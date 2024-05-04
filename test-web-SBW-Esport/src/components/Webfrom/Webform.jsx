@@ -1,74 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { DataGoogleId } from '../LoginLogout/LoginLogout';
 import './Webform.css'
 
-function Webform() {
-  const [formData, setFormData] = useState({
-    ชื่อสกุล: '',
-    ชื่อเล่น: '',
-    เบอร์โทร: '',
-    อีเมล: ''
-  });
+const Webform = () => {
+  const [data, setData] = useState([]);
+  const { GoogleId, setGoogleId } = useContext(DataGoogleId)
+  console.log(GoogleId)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+  // form
+  const formRef = useRef(null)
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec"
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxvrYFU1t1TuIoIT0XCEumbbJIX8Cw-RBgfO-a253dJruKILnOvREEUtuwNI44H3iv2/exec';
-    try {
-      const response = await fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      if (response.ok) {
-        alert('บันทึกข้อมูลเรียบร้อยแล้ว..');
-        setFormData({
-          ชื่อสกุล: '',
-          ชื่อเล่น: '',
-          เบอร์โทร: '',
-          อีเมล: ''
-        });
-      } else {
-        throw new Error('เกิดข้อผิดพลาดในการบันทึกข้อมูล');
-      }
-    } catch (error) {
-      console.error('Error!', error.message);
+
+    if (!GoogleId) {
+      console.log("GoogleId ไม่มีค่า");
+      return;
     }
-  };
+
+    setLoading(true);
+  
+    const formData = new FormData(formRef.current);
+    
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    if (!name || !email || !phone) {
+      console.log("กรุณากรอกข้อมูลให้ครบถ้วน");
+      setLoading(false);
+      return;
+    }
+  
+    formData.append('GoogleId', GoogleId);
+    
+    fetch(scriptUrl, {
+      method: 'POST',
+      body: formData,
+    }).then(res => {
+      console.log("ส่งเรียบร้อยแล้ว");
+      setLoading(false);
+      formRef.current.reset();
+    }).catch(err => console.log('Error:', err));
+  }
+  
+  // API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(scriptUrl);
+        const jsonData = await response.json();
+        const fullData = jsonData.data
+        setData(fullData);
+        console.log(fullData)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const CheckGoogleid =  data.filter(data => data.GoogleId === GoogleId)
+  console.log(CheckGoogleid)
 
   return (
-    <section>
+    <section className='Webform'>
       <div className="container">
-        <div>
-          <h3 className="text-center">test form SBW Esport</h3>
-        </div>
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <div className="form-group">
-            <label htmlFor="ชื่อ-สกุล">ชื่อ สกุล</label>
-            <input type="text" className="form-control" placeholder="ชื่อ สกุล" name="ชื่อสกุล" value={formData.ชื่อสกุล} onChange={handleChange} />
+        <form ref={formRef} onSubmit={handleSubmit} name="google-sheet">
+          <div className="input-style">
+            <label htmlFor='name'>
+              Name
+            </label>
+            <input type="text" id="name" name="name" placeholder='Your Name *' />
           </div>
-          <div className="form-group">
-            <label htmlFor="ชื่อเล่น">ชื่อเล่น</label>
-            <input type="text" className="form-control" placeholder="ชื่อเล่น" name="ชื่อเล่น" value={formData.ชื่อเล่น} onChange={handleChange} />
+          <div className="input-style">
+            <label htmlFor='name'>Email</label>
+            <input type="email" name="email" placeholder='Your Email *' />
           </div>
-          <div className="form-group">
-            <label htmlFor="เบอร์โทร">เบอร์โทร</label>
-            <input type="text" className="form-control" placeholder="เบอร์โทร" name="เบอร์โทร" value={formData.เบอร์โทร} onChange={handleChange} />
+          <div className="input-style">
+            <label htmlFor='name'>Phone No</label>
+            <input type="text" name="phone" placeholder='Your Phone *' />
           </div>
-          <div className="form-group">
-            <label htmlFor="อีเมล">อีเมล</label>
-            <input type="email" className="form-control" placeholder="อีเมล" name="อีเมล" value={formData.อีเมล} onChange={handleChange} />
+          <br />
+          <div className="input-style">
+            <input type="submit" value={loading ? "Loading..." : "SEND MESSAGE"} />
           </div>
-          <button type="submit" className="btn btn-primary">บันทึก</button>
         </form>
+      </div>
+      <br />
+      <div>
+        <h1>Google Sheets FullData</h1>
+        <ul>
+          {data.map((item, index) => (
+            <li key={index}>{item.timestamp} {item.name} {item.email} {item.phone}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h1>Data me</h1>
+          {CheckGoogleid.map((item, index) => (
+            <li key={index}>{item.name}</li>
+          ))}
       </div>
     </section>
   );
