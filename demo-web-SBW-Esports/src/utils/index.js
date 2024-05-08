@@ -1,0 +1,4 @@
+export const LogoSBWep = '../../../public/LogoSBWep.png'
+export const LogoSBW = '../../../public/SBW.png'
+export const imgsbw1 = 'https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-6/362219522_112790735217916_6296265707090322291_n.jpg?stp=cp6_dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=b9yEBv_AFGkQ7kNvgHQCcE-&_nc_ht=scontent.fbkk26-1.fna&oh=00_AfCXeIIxqPqEhnOxNfJxzCyizkZYf_w1DkwS5csoCt8LMg&oe=664155AD' 
+export const imgsbw2 = 'https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-6/371821076_140725502424439_6910663239970809731_n.jpg?stp=cp6_dst-jpg&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=hL5jvB0RWtsQ7kNvgE_wdHV&_nc_ht=scontent.fbkk26-1.fna&oh=00_AfASzU1X9i7chgSPFUTIyslh3CRyYb3ejimXEvrGsfXvtQ&oe=6641838D'

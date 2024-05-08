@@ -1,0 +1,79 @@
+.Hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.Logo1 {
+    position: relative;
+}
+.Logo1 img {
+    position: relative;
+    width: 300px;
+    z-index: 10;
+}
+.boxshadow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background-image: linear-gradient(270deg, #143464 40%, #f9a31b 100%);
+    filter: blur(90px);
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+.doc1 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    z-index: 10;
+}
+.doc1 h1 {
+    font-size: 50px;
+}
+.doc1 span {
+    color: #adadad;
+}
+.inHero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.Logo2 {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+.doc2 {
+    text-align: center;
+    color: #adadad;
+}
+.doc2 span {
+    color: #0053cf;
+}
+.shadowX {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+}
+.shadow {
+    width: 60px;
+    min-height: 100vh;
+    z-index: 0;
+}
+.box1 {
+    background-color: #0053cf;
+    filter: blur(200px);
+    border-radius: 0 50% 50% 0;
+
+}
+.box2 {
+    background-color: #ffb947;
+    filter: blur(200px);
+    border-radius: 50% 0 0 50%;
+}

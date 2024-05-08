@@ -23,13 +23,13 @@ const LoginLogout = () => {
 
   const onSuccess = (res) => {
     setProfile(res.profileObj)
-    // console.log("success", res)
+    console.log("success", res)
     const googleId = res.googleId
     setGoogleId(googleId)
   }
 
   const onFailed = (res) => {
-    // console.log("failed", res)
+    console.log("failed", res)
   }
 
   const logOut = () => {
