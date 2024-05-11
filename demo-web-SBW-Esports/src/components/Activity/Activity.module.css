@@ -1,0 +1,58 @@
+.Main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding: 0 10%;
+}
+.title {
+    font-size: 90px;
+    padding-bottom: 50px;
+}
+.activity {
+    min-width: 100%;
+    padding: 0 10%;
+    padding-bottom: 100px;
+}
+.title_activity {
+    font-size: 50px;
+    color: red;
+    padding-bottom: 50px;
+}
+.title_activity p {
+    font-size: 20px;
+    color: #adadad;
+}
+.con_activity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+.img_con1 {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+}
+.img_con1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.img_con2  {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+}
+.img_con2 img {
+    flex: 1 1 0%;
+    height: 50vh;
+    overflow: hidden;
+}

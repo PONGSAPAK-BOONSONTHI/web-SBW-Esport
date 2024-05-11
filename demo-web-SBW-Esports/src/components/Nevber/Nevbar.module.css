@@ -1,4 +1,4 @@
-.Navbar { 
+.Navbar {
   position: fixed;
   top: 0px;
   left: 0px;
@@ -18,13 +18,82 @@
   background-color: #1d093750;
   border: 1px solid rgba(80, 80, 80, .3137254902);
 }
+
 .Logo {
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: .3s ease;
 }
-.Munu {
+.Menu {
   display: flex;
   gap: 20px;
   cursor: pointer;
+}
+.Menu .button1:hover {
+  transition: .3s ease;
+  color: #0066ff;
+}
+.Menu .button2:hover {
+  transition: .3s ease;
+  color: #f9a31b;
+}
+.Login {
+  width: 120px;
+}
+.profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px;
+  border-radius: 10px;
+  width: 140px;
+  transition: .3s ease;
+
+  gap: 10px;
+  cursor: pointer;
+}
+.profile:hover {
+  background-color: #37126950;
+}
+.imgProfile img {
+  display: flex;
+  align-items: center;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.dropdown {
+  position: absolute;
+  top: 130%;
+  right: 10%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  list-style-type: none;
+  padding: 20px;
+  border: 1px solid grey;
+  border-radius: 20px;
+
+  width: 200px;
+  backdrop-filter: blur(5px);
+  background-color: #37126950;
+  border: 1px solid rgba(80, 80, 80, .3137254902);
+  gap: 5px;
+}
+.dropdown li button {
+  cursor: pointer;
+  font-family: "Kanit", sans-serif;
+  border: none;
+  border-radius: 2px;
+  width: 140px;
+  padding: 10px;
+}
+.dropdown li button:hover {
+  background-color: #d3d3d3;
 }
