@@ -3,12 +3,21 @@ import styles from './Nevbar.module.css'
 import { GoogleLogin, GoogleLogout } from 'react-google-login'
 import { gapi } from 'gapi-script'
 import { LogoSBWep } from '../../utils/index.js'
+import { Link, NavLink } from 'react-router-dom'
 
-const Nevber = ({ scrollToSection }) => {
+const Nevbar = () => {
   const [profile, setProfile] = useState(0)
   const [GoogleId, setGoogleId] = useState('')
   const [open, setOpen] = useState(false)
   const clientId = '981964571180-66p0p3cp7sdq6tif5aiam4j2589qt2no.apps.googleusercontent.com'
+
+  const sections = [
+    { to: '/', text: 'Home', target: 'section1', style: 'button1' },
+    { to: '/public', text: 'ประชาสัมพันธ์', target: 'section2', style: 'button2' },
+    { to: '/activity', text: 'กิจกรรม', target: 'section3', style: 'button1' },
+    { to: '/origin', text: 'ความเป็นมา', target: 'section4', style: 'button2' },
+    { to: '/contact', text: 'Contact', target: 'section5', style: 'button1' }
+  ]
 
   useEffect(() => {
     const initcliient = () => {
@@ -35,26 +44,24 @@ const Nevber = ({ scrollToSection }) => {
     setProfile(null)
   }
 
-  const Open = () => {
-    setOpen(!open)
-  }
+  const handleMenuClick = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <header>
       <nav className={styles.Navbar}>
-        <div className={styles.Logo}>
-          <img onClick={() => scrollToSection('section1')} src={LogoSBWep} width={70} alt="Logo" />
-        </div>
+        <Link to='/' className={styles.Logo}>
+          <img src={LogoSBWep} width={70} alt="Logo" onClick={handleMenuClick}/>
+        </Link>
         <div className={styles.Menu}>
-          <a className={styles.button1} onClick={() => scrollToSection('section1')}>Home</a>
-          <a className={styles.button2} onClick={() => scrollToSection('section2')}>ประชาสัมพันธ์</a>
-          <a className={styles.button1} onClick={() => scrollToSection('section3')}>กิจกรรม</a>
-          <a className={styles.button2} onClick={() => scrollToSection('section4')}>ความเป็นมา</a>
-          <a className={styles.button1} onClick={() => scrollToSection('section5')}>Contact</a>
+          {sections.map((section, index) => (
+            <Link key={index} to={section.to} className={styles[section.style]} onClick={handleMenuClick}>{section.text}</Link>
+          ))}
         </div>
         <div className={styles.Login}>
           {profile ? (
-            <div onClick={Open} className={styles.profile}>
+            <div onClick={() => setOpen(!open)} className={styles.profile}>
               <div className={styles.imgProfile}><img src={profile.imageUrl} alt="imgProfile" /></div>
               <div>Profile</div>
               {open ? (
@@ -89,4 +96,4 @@ const Nevber = ({ scrollToSection }) => {
   )
 }
 
-export default Nevber
+export default Nevbar

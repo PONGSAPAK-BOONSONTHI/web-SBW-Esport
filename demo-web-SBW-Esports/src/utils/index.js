@@ -5,3 +5,6 @@ export const imgsbw2 = 'https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-6/37
 export const imgGSC1 = 'https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-6/361666622_112689775228012_4968238958070483253_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GdAZypWYOKcQ7kNvgHn22mV&_nc_ht=scontent.fbkk26-1.fna&oh=00_AYDNFASNVuZX0mmcUito0C94oKAeXaz894rvKEwQIrGWGw&oe=6643D4BE'
 export const imgGSC2 = 'https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-6/361860214_112690071894649_8698977709214269655_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=n-vpPIex-hwQ7kNvgEnLXfD&_nc_ht=scontent.fbkk26-1.fna&oh=00_AYDyGyqguKtK6pWPIRo8iAIaxySbfwtXg59BL_Ir6wH5xQ&oe=6643CD34'
 export const imgGSC3 = 'https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-6/361860214_112690071894649_8698977709214269655_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=n-vpPIex-hwQ7kNvgEnLXfD&_nc_ht=scontent.fbkk26-1.fna&oh=00_AYDyGyqguKtK6pWPIRo8iAIaxySbfwtXg59BL_Ir6wH5xQ&oe=6643CD34'
+export const Facebook = '../../../public/icon/facebook.png'
+export const Instagram  = '../../../public/icon/instagram.png'
+export const Discord = '../../../public/icon/discord.png'

@@ -30,6 +30,10 @@
   gap: 20px;
   cursor: pointer;
 }
+.Menu a {
+  color: #fff;
+  text-decoration: none;
+} 
 .Menu .button1:hover {
   transition: .3s ease;
   color: #0066ff;
@@ -49,10 +53,10 @@
 
   padding: 8px;
   border-radius: 10px;
-  width: 140px;
+  width: 120px;
   transition: .3s ease;
 
-  gap: 10px;
+  gap: 7px;
   cursor: pointer;
 }
 .profile:hover {
@@ -61,13 +65,13 @@
 .imgProfile img {
   display: flex;
   align-items: center;
-  width: 45px;
+  width: 40px;
   border-radius: 50%;
 }
 
 .dropdown {
   position: absolute;
-  top: 130%;
+  top: 150%;
   right: 10%;
 
   display: flex;

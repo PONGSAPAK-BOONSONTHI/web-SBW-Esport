@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './Activity.module.css'
 import activity from '../../utils/activity.json'
-import { imgGSC1, imgGSC2, imgGSC3 } from '../../utils'
 
 const Activity = () => {
   return (
@@ -9,7 +8,7 @@ const Activity = () => {
       <div className={styles.Main}>
         <h1 className={styles.title}>การแข่งขันที่ผ่านมา</h1>
         {activity.map((item, index) => (
-          <div className={styles.activity}>
+          <div key={index} className={styles.activity}>
 
             <div className={styles.title_activity}>
               <h1>{item.title}</h1>
