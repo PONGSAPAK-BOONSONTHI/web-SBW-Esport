@@ -4,7 +4,7 @@ import { LogoSBWep, LogoSBW } from '../../utils/index.js'
 
 const Hero = () => {
   return (
-    <section id='section1'>
+    <section id={styles.Hero}>
       <div className={styles.Hero}>
         <div className={styles.Logo1}>
           <img src={LogoSBWep} alt="LogoSBWep" />

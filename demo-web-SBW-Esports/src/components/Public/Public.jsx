@@ -3,7 +3,7 @@ import styles from './Public.module.css'
 
 const Public = () => {
   return (
-    <section id='section2'>
+    <section id={styles.Public}>
       <div className={styles.Public}>
         <h1>ประชาสัมพันธ์</h1>
         <p>ยังไม่ทำ</p>

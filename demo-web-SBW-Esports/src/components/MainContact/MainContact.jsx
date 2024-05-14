@@ -3,9 +3,9 @@ import styles from './MainContact.module.css'
 
 const MainContact = () => {
   return (
-    <section id='section5'>
-    <div className={styles.Main}>
-      <h1>ติดต่อพวกเราได้ที่ ไม่บอก</h1>
+    <section id={styles.MainContact}>
+    <div className={styles.MainContact}>
+      <h1>ติดต่อพวกเราได้ที่</h1>
       <p>ยังไม่ทำ</p>
     </div>
   </section>

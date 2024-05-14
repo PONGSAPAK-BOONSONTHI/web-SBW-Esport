@@ -1,49 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import styles from './Nevbar.module.css'
-import { GoogleLogin, GoogleLogout } from 'react-google-login'
-import { gapi } from 'gapi-script'
-import { LogoSBWep } from '../../utils/index.js'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useContext, useState } from 'react';
+import styles from './Nevbar.module.css';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { LogoSBWep } from '../../utils/index.js';
+import { Link } from 'react-router-dom';
+import { DataApp } from '../../App.jsx';
 
 const Nevbar = () => {
-  const [profile, setProfile] = useState(0)
-  const [GoogleId, setGoogleId] = useState('')
-  const [open, setOpen] = useState(false)
-  const clientId = '981964571180-66p0p3cp7sdq6tif5aiam4j2589qt2no.apps.googleusercontent.com'
+  const { profile, onSuccess, onFailed, logOut, clientId } = useContext(DataApp);
 
   const sections = [
-    { to: '/', text: 'Home', target: 'section1', style: 'button1' },
-    { to: '/public', text: 'ประชาสัมพันธ์', target: 'section2', style: 'button2' },
-    { to: '/activity', text: 'กิจกรรม', target: 'section3', style: 'button1' },
-    { to: '/origin', text: 'ความเป็นมา', target: 'section4', style: 'button2' },
-    { to: '/contact', text: 'Contact', target: 'section5', style: 'button1' }
-  ]
-
-  useEffect(() => {
-    const initcliient = () => {
-      gapi.client.init({
-        clientId: clientId,
-        scope: ''
-      })
-    }
-    gapi.load("client:auth2", initcliient)
-  }, [])
-
-  const onSuccess = (res) => {
-    setProfile(res.profileObj)
-    console.log('Success', res)
-    const googleId = res.GoogleId
-    setGoogleId(googleId)
-  }
-
-  const onFailed = (res) => {
-    console.log('Failed', res)
-  }
-
-  const logOut = () => {
-    setProfile(null)
-  }
-
+    { to: '/', text: 'Home',  style: 'button1' },
+    { to: '/public', text: 'ประชาสัมพันธ์',  style: 'button2' },
+    { to: '/activity', text: 'กิจกรรม',  style: 'button1' },
+    { to: '/origin', text: 'ความเป็นมา',  style: 'button2' },
+    { to: '/contact', text: 'Contact',  style: 'button1' }
+  ];
+  
+  const [open, setOpen] = useState(false);
   const handleMenuClick = () => {
     window.scrollTo(0, 0);
   };
@@ -56,7 +29,9 @@ const Nevbar = () => {
         </Link>
         <div className={styles.Menu}>
           {sections.map((section, index) => (
-            <Link key={index} to={section.to} className={styles[section.style]} onClick={handleMenuClick}>{section.text}</Link>
+            <Link key={index} to={section.to} className={styles[section.style]} onClick={handleMenuClick}>
+              {section.text}
+            </Link>
           ))}
         </div>
         <div className={styles.Login}>
@@ -64,7 +39,7 @@ const Nevbar = () => {
             <div onClick={() => setOpen(!open)} className={styles.profile}>
               <div className={styles.imgProfile}><img src={profile.imageUrl} alt="imgProfile" /></div>
               <div>Profile</div>
-              {open ? (
+              {open && (
                 <ul className={styles.dropdown}>
                   <li><button type='button'>ดูสถานะ</button></li>
                   <li>
@@ -75,25 +50,22 @@ const Nevbar = () => {
                     />
                   </li>
                 </ul>
-              ) : (null)}
+              )}
             </div>
           ) : (
-            <div>
-              <GoogleLogin
-                clientId={clientId}
-                buttonText='Login'
-                onSuccess={onSuccess}
-                onFailure={onFailed}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-              />
-            </div>
+            <GoogleLogin
+              clientId={clientId}
+              buttonText='Login'
+              onSuccess={onSuccess}
+              onFailure={onFailed}
+              cookiePolicy={'single_host_origin'}
+              isSignedIn={true}
+            />
           )}
-
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Nevbar
+export default Nevbar;

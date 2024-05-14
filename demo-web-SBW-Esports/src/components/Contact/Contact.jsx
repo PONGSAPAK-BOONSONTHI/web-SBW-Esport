@@ -4,8 +4,8 @@ import { Facebook, Instagram, Discord } from '../../utils'
 
 const Contact = () => {
   return (
-    <section id='section6'>
-      <div className={styles.Main}>
+    <section id={styles.Contact}>
+      <div className={styles.Contact}>
         <div className={styles.box_contact}>
           <div className={styles.contact1}>
 

@@ -4,8 +4,8 @@ import activity from '../../utils/activity.json'
 
 const Activity = () => {
   return (
-    <section id='section3'>
-      <div className={styles.Main}>
+    <section id={styles.Activity}>
+      <div className={styles.Activity}>
         <h1 className={styles.title}>การแข่งขันที่ผ่านมา</h1>
         {activity.map((item, index) => (
           <div key={index} className={styles.activity}>
