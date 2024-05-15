@@ -41,7 +41,9 @@ const Nevbar = () => {
               <div>Profile</div>
               {open && (
                 <ul className={styles.dropdown}>
-                  <li><button type='button'>ดูสถานะ</button></li>
+                  <Link to="/status">
+                    <li><button type='button'>ดูสถานะ</button></li>
+                  </Link>
                   <li>
                     <GoogleLogout
                       clientId={clientId}

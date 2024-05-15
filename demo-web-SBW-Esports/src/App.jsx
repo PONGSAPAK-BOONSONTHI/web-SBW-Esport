@@ -16,7 +16,7 @@ export const DataApp = createContext();
 function App() {
 
   const clientId = '981964571180-66p0p3cp7sdq6tif5aiam4j2589qt2no.apps.googleusercontent.com'
-  const [profile, setProfile] = useState(0)
+  const [profile, setProfile] = useState('')
   const [email, setEmail] = useState('')
 
   useEffect(() => {
