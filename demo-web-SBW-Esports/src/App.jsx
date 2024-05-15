@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { gapi } from 'gapi-script'
 
-import Nevbar from './components/Nevber/Nevbar.jsx'
+import Navbar from './components/Narbar/Navbar.jsx'
 import Hero from './components/Hero/Hero.jsx'
 import Public from './components/Public/Public.jsx'
 import Activity from './components/Activity/Activity.jsx'
@@ -57,7 +57,7 @@ function App() {
   return (
     <DataApp.Provider value={value}>
       <BrowserRouter>
-        <Nevbar />
+        <Navbar />
         <Routes>
           <Route path='/' element={
             <>

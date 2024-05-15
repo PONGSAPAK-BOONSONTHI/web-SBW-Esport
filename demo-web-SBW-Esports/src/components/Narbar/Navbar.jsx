@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import styles from './Nevbar.module.css';
+import styles from './Navbar.module.css';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { LogoSBWep } from '../../utils/index.js';
 import { Link } from 'react-router-dom';

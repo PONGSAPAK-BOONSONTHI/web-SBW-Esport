@@ -6,9 +6,51 @@
     min-height: 100vh;
     font-size: 100px;
 }
-.Status p {
-    font-size: 50px;
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 100px;
 }
-.input input{
+form {
+    min-width: 500px;
+    padding: 30px;
+    background-color: #242424;
+    border-radius: 10px;
+}
+label {
+    font-size: 45px;
+    margin-bottom: 5px;
+}
+
+input {
+    font-size: 40px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.Button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.Button:hover {
+    background-color: #0056b3;
+}
+.datame {
+    min-width: 500px;
+    min-height: 500px;
+    padding: 30px;
+    background-color: #242424;
+    border-radius: 10px;
+}
+.datame .title {
     font-size: 40px;
 }
