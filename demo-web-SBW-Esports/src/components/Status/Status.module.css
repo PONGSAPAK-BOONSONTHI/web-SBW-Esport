@@ -4,14 +4,17 @@
     justify-content: center;
     flex-direction: column;
     min-height: 100vh;
-    font-size: 100px;
+    padding: 0 10%;
 }
 .form {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 50vb;
     gap: 100px;
+}
+.Status .title {
+    font-size: 100px;
 }
 form {
     min-width: 500px;
@@ -20,7 +23,7 @@ form {
     border-radius: 10px;
 }
 label {
-    font-size: 45px;
+    font-size: 30px;
     margin-bottom: 5px;
 }
 
@@ -46,11 +49,19 @@ input {
 }
 .datame {
     min-width: 500px;
-    min-height: 500px;
+    min-height: 50vb;
     padding: 30px;
-    background-color: #242424;
     border-radius: 10px;
+    gap: 100px;
+    background-color: #242424;
 }
 .datame .title {
     font-size: 40px;
+}
+.loading {
+    min-height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
