@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { LogoSBWep } from '../../utils/index.js';
@@ -6,26 +6,37 @@ import { Link } from 'react-router-dom';
 import { DataApp } from '../../App.jsx';
 
 const Nevbar = () => {
-  const { profile, onSuccess, onFailed, logOut, clientId } = useContext(DataApp);
+  const { profile, onSuccess, onFailed, logOut, clientId } = useContext(DataApp)
+  const [imageSrcProfile, setImageSrcProfile] = useState(profile?.imageUrl || '/default-profile.png')
 
   const sections = [
-    { to: '/', text: 'Home',  style: 'button1' },
-    { to: '/public', text: 'ประชาสัมพันธ์',  style: 'button2' },
-    { to: '/activity', text: 'กิจกรรม',  style: 'button1' },
-    { to: '/origin', text: 'ความเป็นมา',  style: 'button2' },
-    { to: '/contact', text: 'Contact',  style: 'button1' }
+    { to: '/', text: 'Home', style: 'button1' },
+    { to: '/public', text: 'ประชาสัมพันธ์', style: 'button2' },
+    { to: '/activity', text: 'กิจกรรม', style: 'button1' },
+    { to: '/origin', text: 'ความเป็นมา', style: 'button2' },
+    { to: '/contact', text: 'Contact', style: 'button1' }
   ];
-  
-  const [open, setOpen] = useState(false);
+
+  const [open, setOpen] = useState(false)
   const handleMenuClick = () => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0)
+  };
+
+  useEffect(() => {
+    if (profile?.imageUrl) {
+      setImageSrcProfile(profile.imageUrl)
+    }
+  }, [profile])
+
+  const handleImageError = () => {
+    setImageSrc('/default-profile.png');
   };
 
   return (
     <header>
       <nav className={styles.Navbar}>
         <Link to='/' className={styles.Logo}>
-          <img src={LogoSBWep} width={70} alt="Logo" onClick={handleMenuClick}/>
+          <img src={LogoSBWep} width={90} alt="Logo" onClick={handleMenuClick} />
         </Link>
         <div className={styles.Menu}>
           {sections.map((section, index) => (
@@ -37,7 +48,9 @@ const Nevbar = () => {
         <div className={styles.Login}>
           {profile ? (
             <div onClick={() => setOpen(!open)} className={styles.profile}>
-              <div className={styles.imgProfile}><img src={profile.imageUrl} alt="imgProfile" /></div>
+              <div className={styles.imgProfile}>
+                <img src={imageSrcProfile} alt="imgProfile" onError={handleImageError}/>
+              </div>
               <div>Profile</div>
               {open && (
                 <ul className={styles.dropdown}>

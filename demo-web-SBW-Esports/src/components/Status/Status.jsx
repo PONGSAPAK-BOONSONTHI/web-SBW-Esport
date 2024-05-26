@@ -69,44 +69,57 @@ const Status = () => {
       <div className={styles.Status}>
         <h1 className={styles.title}>ตรวจสอบสถานะ</h1>
         {profile ? (
-            <div className={styles.form}>
-              <form ref={formRef} onSubmit={handleSubmit} name="google-sheet">
-                <div className={styles.input}>
-                  <label htmlFor='name'>ผู้ลงสมัคร</label>
-                  <input type="text" name="name" />
-                </div>
-                <div className={styles.input}>
-                  <label htmlFor='game'>Game</label>
-                  <input type="text" name="game" />
-                </div>
-                <div className={styles.input}>
-                  <label htmlFor='phone'>เบอร์</label>
-                  <input type="text" name="phone" />
-                </div>
-                <br />
-                <div className={styles.input}>
-                  <input className={styles.Button} type="submit" value={loading ? "Loading..." : "ส่งคำตอบ"} />
-                </div>
-              </form>
-              <br />
-              <div className={styles.datame}>
-                <h1 className={styles.title}>ข้อมูลลงสมัคร</h1>
-                {CheckEmail ? (
-                  <div>
-                    {CheckEmailData.map((item, index) => (
-                      <div key={index}>
-                        <h1>{item.timestamp}</h1>
-                        <h1>ชื่อทีม : {item.name}</h1>
-                        <p>Game : {item.game}</p>
-                        <p>เบอร์ : {item.phone}</p>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className={styles.loading}><h1>โหลดข้อมูล</h1></div>
-                )}
+          <div className={styles.form}>
+            <form ref={formRef} onSubmit={handleSubmit} name="google-sheet">
+              <div className={styles.input}>
+                <label htmlFor='name'>ผู้ลงสมัคร</label>
+                <input type="text" name="name" />
               </div>
+              <div className={styles.input}>
+                <label htmlFor='game'>Game</label>
+                <input type="text" name="game" />
+              </div>
+              <div className={styles.input}>
+                <label htmlFor='phone'>เบอร์</label>
+                <input type="text" name="phone" />
+              </div>
+              <br />
+              <div className={styles.input}>
+                <input className={styles.Button} type="submit" value={loading ? "Loading..." : "ส่งคำตอบ"} />
+              </div>
+              <div className={styles.input}>
+                <select name="" id="">
+                  <option value="">ดำ</option>
+                  <option value="">ดำ</option>
+                  <option value="">ดำ</option>
+                  <option value="">ดำ</option>
+                  <option value="">ดำ</option>
+                </select>
+              </div>
+              <div className={styles.input}>
+                <label for="date">กรุณาเลือกวันที่:</label>
+                <input type="date" id="date" name="date" />
+              </div>
+            </form>
+
+            <div className={styles.datame}>
+              <h1 className={styles.title}>ข้อมูลลงสมัคร</h1>
+              {CheckEmail ? (
+                <div>
+                  {CheckEmailData.map((item, index) => (
+                    <div key={index}>
+                      <h1>{item.timestamp}</h1>
+                      <h1>ชื่อทีม : {item.name}</h1>
+                      <p>Game : {item.game}</p>
+                      <p>เบอร์ : {item.phone}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className={styles.loading}><h1>โหลดข้อมูล</h1></div>
+              )}
             </div>
+          </div>
         ) : (
           <div className={styles.form}>
             <h1 className={styles.title}>ไม่มีข้อมูล</h1>

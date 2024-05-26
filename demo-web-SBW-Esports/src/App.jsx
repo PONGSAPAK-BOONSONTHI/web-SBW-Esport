@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from 'react'
+import React, { createContext, useState, useEffect } from 'react';
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { gapi } from 'gapi-script'
 
@@ -10,13 +11,14 @@ import Origin from './components/Origin/Origin.jsx'
 import MainContact from './components/MainContact/MainContact.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import Status from './components/Status/Status.jsx'
+import Form from './components/Form/Form.jsx'
 
 export const DataApp = createContext();
 
 function App() {
 
   const clientId = '981964571180-66p0p3cp7sdq6tif5aiam4j2589qt2no.apps.googleusercontent.com'
-  const [profile, setProfile] = useState('')
+  const [profile, setProfile] = useState(null)
   const [email, setEmail] = useState('')
 
   useEffect(() => {
@@ -94,7 +96,8 @@ function App() {
           } />
           <Route path='/status' element={
             <>
-              <Status />
+              <Form/>
+              {/* <Status /> */}
               <Contact />
             </>
           }></Route>

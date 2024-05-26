@@ -1,39 +1,50 @@
-.Status {
+.Form {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 150vh;
     padding: 0 10%;
 }
-.form {
+.mainForm {
+    min-width: 90%;
+}
+.title{
+    border-radius: 50px 50px 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 50vb;
-    gap: 100px;
-}
-.Status .title {
+
     font-size: 100px;
+
+    min-width: 100%;
+    min-height: 40vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../../../public/imgform.jpg);
 }
-form {
-    min-height: 500px;
+.input form {
     padding: 30px;
     background-color: #242424;
     border-radius: 10px;
 }
-label {
+.input label {
     font-size: 30px;
     margin-bottom: 5px;
 }
 
-input {
+.input input {
     font-size: 40px;
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+.input select {
+    padding: 30px;
+    background-color: #242424;
+    border-radius: 10px;
 }
 .Button {
     background-color: #007bff;
@@ -46,22 +57,4 @@ input {
 
 .Button:hover {
     background-color: #0056b3;
-}
-.datame {
-    min-width: 500px;
-    min-height: 50vb;
-    padding: 30px;
-    border-radius: 10px;
-    gap: 100px;
-    background-color: #242424;
-}
-.datame .title {
-    font-size: 40px;
-}
-.loading {
-    min-height: 380px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }

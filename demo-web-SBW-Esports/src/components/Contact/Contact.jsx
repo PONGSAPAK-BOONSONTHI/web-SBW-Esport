@@ -28,9 +28,9 @@ const Contact = () => {
               <span className={styles.title}>ช่องทางติดตาม</span>
               <div className={styles.br}></div>
               <div className={styles.img_con}>
-                <a href="https://www.facebook.com/SBWesports/"><img src={Facebook} alt="Facebook" /></a>
-                <a href="https://www.instagram.com/sbw.esports/"><img src={Instagram} alt="Instagram" /></a>
-                <a href="https://discord.gg/wKX3PUYvCt"><img src={Discord} alt="Discord" /></a>
+                <a href="https://www.facebook.com/SBWesports/" target='_blank'><img src={Facebook} alt="Facebook"/></a>
+                <a href="https://www.instagram.com/sbw.esports/" target='_blank'><img src={Instagram} alt="Instagram" /></a>
+                <a href="https://discord.gg/wKX3PUYvCt" target='_blank'><img src={Discord} alt="Discord" /></a>
               </div>
             </div>
           </div>

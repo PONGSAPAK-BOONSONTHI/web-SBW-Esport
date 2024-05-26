@@ -23,7 +23,7 @@ const Hero = () => {
         </div>
         <div className={styles.inHero}>
           <div className={styles.Logo2}>
-            <img src={LogoSBWep} height={250} alt="" />
+            <img src={LogoSBWep} height={160} alt="" />
             <img src={LogoSBW} height={250} alt="" />
           </div>
 
