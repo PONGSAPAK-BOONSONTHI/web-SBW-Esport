@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { LogoSBWep } from '../../utils/index.js';
+import { LogoSBWep, default_profile } from '../../utils/index.js';
 import { Link } from 'react-router-dom';
 import { DataApp } from '../../App.jsx';
 
 const Nevbar = () => {
   const { profile, onSuccess, onFailed, logOut, clientId } = useContext(DataApp)
-  const [imageSrcProfile, setImageSrcProfile] = useState(profile?.imageUrl || '/default-profile.png')
+  const [imageSrcProfile, setImageSrcProfile] = useState(profile?.imageUrl || default_profile)
 
   const sections = [
     { to: '/', text: 'Home', style: 'button1' },
@@ -49,7 +49,7 @@ const Nevbar = () => {
           {profile ? (
             <div onClick={() => setOpen(!open)} className={styles.profile}>
               <div className={styles.imgProfile}>
-                <img src={imageSrcProfile} alt="imgProfile" onError={handleImageError}/>
+                <img src={imageSrcProfile} onError={handleImageError}/>
               </div>
               <div>Profile</div>
               {open && (
