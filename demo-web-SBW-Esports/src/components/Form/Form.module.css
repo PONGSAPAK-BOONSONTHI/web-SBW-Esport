@@ -3,27 +3,45 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 200vh;
     padding: 0 10%;
 }
 .main_Form {
-    min-width: 90%;
+    width: 90%;
     background-color: #242424;
     border-radius: 50px;
+    margin: 20vh 0;
 }
 .head_title {
-    border-radius: 50px 50px 0 0;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    font-size: 100px;
-
+    border-radius: 50px 50px 0 0;
     min-width: 100%;
     min-height: 40vh;
+}
+.head_title .background {
+    position: absolute;
+    border-radius: 50px 50px 0 0;
+    min-width: 100%;
+    min-height: 40vh;
+
     background-size: cover;
     background-position: center;
     background-image: url(../../../public/imgform.jpg);
+    z-index: 1;
+}
+.head_title .title {
+    font-size: 160px;
+    z-index: 10;
+}
+.head_title .title_shadow {
+    position: absolute;
+    font-size: 160px;
+    color: #000;
+    filter: blur(50px);
+    z-index: 5;
 }
 .main_sention_Forn, .rule{
     display: flex;
@@ -33,16 +51,12 @@
     border-radius: 0 0 50px 50px;
     gap: 10px;
 }
-.rule .title{
-    font-size: 35px;
-    color: #f9a31b;
-}
-.main_sention_Forn .title {
+.main_sention_Forn .title, .rule .title{
     font-size: 45px;
     color: #f9a31b;
 }
 .main_sention_Forn label {
-    font-size: 40px;
+    font-size: 27px;
 }
 .input {
     width: 100%;
@@ -50,7 +64,7 @@
     flex-direction: column;
 }
 .main_sention_Forn input {
-    font-size: 30px;
+    font-size: 20px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -59,18 +73,16 @@
     display: flex;
     gap: 20px;
 }
-
 .select {
     display: flex;
     flex-direction: column;
 }
-
 .select select {
     height: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
-    font-size: 30px;
+    font-size: 20px;
     color: #333;
     cursor: pointer;
     background-color: #fff;
@@ -80,7 +92,11 @@
 }
 .category_select_position {
     padding-left: 30px;
-}   
+}
+.position {
+    display: flex;
+    align-items: center;
+}
 .position label {
     display: inline-block;
     padding-left: 10px;
@@ -92,33 +108,61 @@
 .position input[type="radio"]:checked + label {
     color: #007bff;
 }
-.Button_sention {
-    padding: 25px 100px 50px 100px;
+.Button_sention_Next,  .Button_sention_NextBack{
+    padding: 25px 80px 50px 80px;
+}
+.Button_sention_Next {
     display: flex;
     justify-content: end;
 }
-.Button {
+.Button_sention_NextBack {
+    display: flex;
+    justify-content: space-between;
+}
+.Button{
     font-size: 30px;
     cursor: pointer;
     color: #fff;
     padding: 10px 40px;
-    border-radius: 4px;
+    border-radius: 50px;
+    transition: .3s ease;
+}
+.onNext {
     background-color: #007bff;
 }
-
-.Button:hover {
+.onNext:hover {
     background-color: #0056b3;
 }
+.onBack {
+    background-color: #ff2222;
+}
+.onBack:hover {
+    background-color: #d50000;
+}
+.onSubmit {
+    background-color: #00cc00;
+}
+.onSubmit:hover {
+    background-color: #008900;
+}
 .img{
+    position: relative;
     padding-top: 50px;
     display: flex;
     justify-content: center;
 }
+.img .shadow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 20px;
+    filter: blur(30px);
+    background-color: #0056b3;
+    z-index: 0;
+}
 .img img {
-    width: 700px;
-    border-radius: 40px;
-    border-style: solid;
-    border-color:#37126950;
-    border-width: 20px;
-
+    width: 600px;
+    height: 600px;
+    border-radius: 20px;
+    z-index: 1;
 }
