@@ -58,7 +58,11 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
     const formData = new FormData(formRef.current)
     const data = Object.fromEntries(formData.entries())
     onSave(applicantNumber, data)
-    onNext()
+    if (applicantNumber < 5) {
+      onNext()
+    } else {
+      onNext()
+    }
   }
 
   return (
@@ -68,7 +72,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
         <div className={styles.form_Sention}>
           <div className={styles.select}>
             <label htmlFor='prefix'>คำนำหน้า</label>
-            <select id='prefix'>
+            <select id='prefix' name="prefix">
               <option value="">-</option>
               <option value="เด็กชาย">เด็กชาย</option>
               <option value="เด็กหญิง">เด็กหญิง</option>
@@ -104,8 +108,8 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
           </div>
 
           <div className={styles.input}>
-            <label htmlFor='number&chapter'>เลขที่เเละตอน</label>
-            <input type="text" id='number&chapter' name="number&chapter" required />
+            <label htmlFor='room'>เลขที่เเละตอน</label>
+            <input type="text" id='room' name="room" required />
           </div>
         </div>
 
@@ -152,24 +156,29 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
       <div className={styles.Button_sention_NextBack}>
         <a className={`${styles.Button} ${styles.onBack}`} type="button" onClick={onBack}>ย้อนกลับ</a>
         {applicantNumber < 5 ? (
-          <a className={`${styles.Button} ${styles.onNext}`} type="button" onClick={() => onNext()}>ถัดไป</a>
+          <a className={`${styles.Button} ${styles.onNext}`} type="button" onClick={() => handleSubmit(new Event('submit'))}>ถัดไป</a>
         ) : (
           <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={() => handleSubmit(new Event('submit'))}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
         )}
       </div>
 
+
     </div>
   )
 }
-const Form = ({setLoading}) => {
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec"
+const Form = ({ setLoading }) => {
+  const scriptUrl = "UrlGoogleshett"
   const [applicants, setApplicants] = useState([])
   const [step, setStep] = useState(1)
   const [applicantNumber, setApplicantNumber] = useState(0)
 
   const NextStep = () => {
-    setApplicantNumber(applicantNumber + 1);
-    setStep(step + 1)
+    if (applicantNumber < 5) {
+      setApplicantNumber(applicantNumber + 1);
+      setStep(step + 1)
+    } else {
+      handleSubmitAll();
+    }
   }
   const BackStep = () => {
     setApplicantNumber(applicantNumber - 1);
@@ -179,20 +188,16 @@ const Form = ({setLoading}) => {
     const newApplicants = [...applicants]
     newApplicants[applicantNumber - 1] = data
     setApplicants(newApplicants)
-  
-    if (applicantNumber === 5) {
-      handleSubmitAll()
-    }
   }
 
   const handleSubmitAll = () => {
-    setLoading(true);
-    const formData = new FormData();
+    setLoading(true)
+    const formData = new FormData()
     applicants.forEach((applicant, index) => {
       Object.keys(applicant).forEach(key => {
         formData.append(`applicant${index + 1}_${key}`, applicant[key])
-      })
-    })
+      });
+    });
 
     fetch(scriptUrl, {
       method: 'POST',
@@ -206,8 +211,9 @@ const Form = ({setLoading}) => {
     }).catch(err => {
       console.log("Error", err)
       setLoading(false)
-    })
+    });
   }
+
 
   return (
     <section id={styles.Form}>

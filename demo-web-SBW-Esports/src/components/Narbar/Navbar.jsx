@@ -29,7 +29,7 @@ const Nevbar = () => {
   }, [profile])
 
   const handleImageError = () => {
-    setImageSrc('/default-profile.png');
+    setImageSrc(default_profile);
   };
 
   return (

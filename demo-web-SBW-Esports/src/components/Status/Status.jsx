@@ -88,15 +88,6 @@ const Status = () => {
                 <input className={styles.Button} type="submit" value={loading ? "Loading..." : "ส่งคำตอบ"} />
               </div>
               <div className={styles.input}>
-                <select name="" id="">
-                  <option value="">ดำ</option>
-                  <option value="">ดำ</option>
-                  <option value="">ดำ</option>
-                  <option value="">ดำ</option>
-                  <option value="">ดำ</option>
-                </select>
-              </div>
-              <div className={styles.input}>
                 <label for="date">กรุณาเลือกวันที่:</label>
                 <input type="date" id="date" name="date" />
               </div>

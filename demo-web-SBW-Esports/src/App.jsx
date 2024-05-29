@@ -12,6 +12,7 @@ import MainContact from './components/MainContact/MainContact.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import Status from './components/Status/Status.jsx'
 import Form from './components/Form/Form.jsx'
+import Formtest from './components/Form/Formtest.jsx'
 
 export const DataApp = createContext();
 
@@ -96,7 +97,8 @@ function App() {
           } />
           <Route path='/status' element={
             <>
-              <Form/>
+              <Form />
+              {/* <Formtest /> */}
               {/* <Status /> */}
               <Contact />
             </>
