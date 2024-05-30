@@ -3,7 +3,7 @@ import styles from './Form.module.css'
 
 const Rule = ({ onNext }) => {
   return (
-    <div>
+    <div className={styles.section}>
       <div className={styles.rule}>
         <h1 className={styles.title}>รับสมัครหาทีมตัวเเทนโรงเรียน รายการ <br /> " RoV ESPORTS SCHOOL CHALLENGE "</h1>
         <span>
@@ -66,7 +66,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
   }
 
   return (
-    <div>
+    <div className={styles.section}>
       <form className={styles.main_sention_Forn} ref={formRef} onSubmit={handleSubmit} name="google-sheet">
         <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber}</h1>
         <div className={styles.form_Sention}>
@@ -108,8 +108,8 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
           </div>
 
           <div className={styles.input}>
-            <label htmlFor='room'>เลขที่เเละตอน</label>
-            <input type="text" id='room' name="room" required />
+            <label htmlFor='number_capter'>เลขที่เเละตอน</label>
+            <input type="text" id='number_capter' name="number_capter" required />
           </div>
         </div>
 
