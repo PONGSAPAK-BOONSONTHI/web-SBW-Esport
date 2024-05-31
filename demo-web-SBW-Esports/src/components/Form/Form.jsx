@@ -127,7 +127,6 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
 
         <div className={styles.position_Sention}>
           <label for="date">ตำแหน่งในเกม</label>
-
           <div className={styles.category_select_position}>
             <div className={styles.position}>
               <input type="radio" name="position" id="dsl" value="DSL" required />
@@ -151,6 +150,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
             </div>
           </div>
         </div>
+        
       </form>
 
       <div className={styles.Button_sention_NextBack}>
@@ -167,7 +167,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
   )
 }
 const Form = ({ setLoading }) => {
-  const scriptUrl = "UrlGoogleshett"
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec"
   const [applicants, setApplicants] = useState([])
   const [step, setStep] = useState(1)
   const [applicantNumber, setApplicantNumber] = useState(0)
