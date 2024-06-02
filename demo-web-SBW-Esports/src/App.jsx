@@ -97,9 +97,9 @@ function App() {
           } />
           <Route path='/status' element={
             <>
-              {/* <Form /> */}
-              {/* <Formtest /> */}
-              <Status />
+              <Form />
+              {/* <Formtest />? */}
+              {/* <Status /> */}
               <Contact />
             </>
           }></Route>

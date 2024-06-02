@@ -1,73 +1,87 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import styles from './Status.module.css';
-import { DataApp } from '../../App';
+import styles from './Status.module.css'
+import { DataApp } from '../../App'
 
 const Status = () => {
-  const { profile, email } = useContext(DataApp);
-  const [data, setData] = useState([]);
-  const formRef = useRef(null);
+  // form
+  const { profile, email } = useContext(DataApp)
+  const [data, setData] = useState([])
+  const formRef = useRef(null)
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec";
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (!email) {
-      console.log("ไม่มีค่า email"); 
-      return;
-    }
-    setLoading(true);
+    setLoading(true)
 
-    const formData = new FormData(formRef.current);
+    const formData = new FormData(formRef.current)
 
     const prefix = formData.get('prefix')
-    const name = formData.get('name');
-    const game = formData.get('surname');
-    const phone = formData.get('phone');
-    const date = formData.get('date');
+    const name = formData.get('name')
+    const game = formData.get('surname')
+    const phone = formData.get('phone')
+    const date = formData.get('date')
     const position = formData.get('position')
 
     if (!prefix || !name || !game || !phone || !date || !position) {
-      console.log("กรุณากรอกข้อมูลให้ครบถ้วน");
-      setLoading(false);
-      return;
+      console.log("กรุณากรอกข้อมูลให้ครบถ้วน")
+      setLoading(false)
     }
 
-    formData.append('email', email);
+    const formattedDate = new Date(date)
+    const day = formattedDate.getDate()
+    const month = formattedDate.getMonth() + 1
+    const year = formattedDate.getFullYear()
+    const formattedDateString = `${day}/${month}/${year}`
+
+    formData.set('date', formattedDateString)
+
+    formData.append('email', email)
 
     try {
       await fetch(scriptUrl, {
         method: 'POST',
         body: formData,
       });
-      console.log("ส่งเรียบร้อยแล้ว");
-      formRef.current.reset();
+      console.log("formData",formData);
+      console.log("ส่งเรียบร้อยแล้ว")
+      formRef.current.reset()
     } catch (err) {
-      console.log('Error :', err);
+      console.log('Error :', err)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
-
+  }
+  
+  //API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(scriptUrl);
-        const jsonData = await response.json();
-        const fullData = jsonData.data;
-        setData(fullData);
-        console.log("fullData", fullData);
+        const response = await fetch(scriptUrl)
+        const jsonData = await response.json()
+        const fullData = jsonData.data
+        setData(fullData)
+        console.log("fullData", fullData)
       } catch (error) {
-        console.error('เกิดข้อผิดพลาดในการดึงข้อมูล :', error);
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูล :', error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
-  const CheckEmailData = data.filter(item => item.email === email);
-  const CheckEmail = CheckEmailData.length > 0;
-  console.log("DataMe : ", CheckEmailData);
+  const CheckEmailData = data.filter(item => item.email === email)
+  const CheckEmail = CheckEmailData.length > 0
+  console.log("DataMe : ", CheckEmailData)
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
 
   return (
     <section id={styles.Status}>
@@ -139,8 +153,8 @@ const Status = () => {
                 CheckEmailData.map((item, index) => (
                   <div key={index}>
                     <h1>{item.timestamp}</h1>
-                    <h1>ชื่อทีม : {item.name}</h1>
-                    <p>Game : {item.game}</p>
+                    <h1>{item.prefix} {item.name} {item.surname}</h1>
+                    <p>วันเกิด : {formatDate(item.dat)}</p>
                     <p>เบอร์ : {item.phone}</p>
                   </div>
                 ))

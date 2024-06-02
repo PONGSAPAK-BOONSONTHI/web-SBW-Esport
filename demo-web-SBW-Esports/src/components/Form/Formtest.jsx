@@ -1,152 +1,159 @@
-import React, { useRef, useState } from 'react'
-import styles from './Form.module.css'
+import React, { useState, useEffect } from 'react';
 
-const Rule = ({ onNext }) => {
+const Formtest = () => {
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef(null);
+  const scriptUrl = 'your_script_url_here'; // เปลี่ยนเป็น URL ของสคริปต์ที่ใช้ส่งข้อมูล
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // ป้องกันการโหลดหน้าใหม่เมื่อกด submit
+
+    setLoading(true); // เริ่มการโหลด
+
+    const formData = new FormData(formRef.current);
+
+    const prefix = formData.get('prefix');
+    const name = formData.get('name');
+    const game = formData.get('surname');
+    const phone = formData.get('phone');
+    const date = formData.get('date');
+    const position = formData.get('position');
+
+    // ตรวจสอบว่าข้อมูลทั้งหมดถูกกรอกครบหรือไม่
+    if (!prefix || !name || !game || !phone || !date || !position) {
+      console.log("กรุณากรอกข้อมูลให้ครบถ้วน")
+      setLoading(false)
+      return;
+    }
+
+    const formattedDate = new Date(date);
+    const day = formattedDate.getDate();
+    const month = formattedDate.getMonth() + 1;
+    const year = formattedDate.getFullYear();
+    const formattedDateString = `${day}/${month}/${year}`;
+
+    formData.set('date', formattedDateString);
+    
+    formData.append('email', email);
+
+    try {
+      await fetch(scriptUrl, {
+        method: 'POST',
+        body: formData,
+      })
+      console.log(formData);
+      console.log("ส่งเรียบร้อยแล้ว");
+      formRef.current.reset();
+    } catch (err) {
+      console.log('Error :', err);
+    } finally {
+      setLoading(false); // สิ้นสุดการโหลด
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(scriptUrl);
+        const jsonData = await response.json();
+        const fullData = jsonData.data;
+        setData(fullData);
+        console.log("fullData", fullData);
+      } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการดึงข้อมูล :', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
-    <div className={styles.Rule}>
-      {/* Add content for Rule if needed */}
-      <button onClick={onNext}>Next</button>
-    </div>
-  )
-}
+    <form className={styles.main_sention_Forn} ref={formRef} onSubmit={handleSubmit} name="google-sheet">
+      <h1 className={styles.title}>ผู้ลงสมัครคนที่ N</h1>
+      <div className={styles.form_Sention}>
+        <div className={styles.select}>
+          <label htmlFor='prefix'>คำนำหน้า</label>
+          <select id='prefix' name="prefix">
+            <option value="">-</option>
+            <option value="เด็กชาย">เด็กชาย</option>
+            <option value="เด็กหญิง">เด็กหญิง</option>
+            <option value="นาย">นาย</option>
+            <option value="นางสาว">นางสาว</option>
+          </select>
+        </div>
 
-const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
-  const formRef = useRef(null)
-  const [loading, setLoading] = useState(false)
+        <div className={styles.input}>
+          <label htmlFor='name'>ชื่อ</label>
+          <input type="text" id='name' name="name" required />
+        </div>
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const formData = new FormData(formRef.current)
-    const data = Object.fromEntries(formData.entries())
-    onSave(applicantNumber, data)
-    onNext()
-  }
+        <div className={styles.input}>
+          <label htmlFor='surname'>นามสกุล</label>
+          <input type="text" id="surname" name="surname" required />
+        </div>
+      </div>
 
-  return (
-    <form ref={formRef} onSubmit={handleSubmit} name="google-sheet">
-      <div className={styles.input}>
-        <label htmlFor='name'>ผู้ลงสมัคร {applicantNumber}</label>
-        <input type="text" name="name" required />
+      <div className={styles.form_Sention}>
+        <div className={styles.input}>
+          <label for="date">วัน/เดือน/ปีเกิด</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+
+        <div className={styles.input}>
+          <label htmlFor='phone'>เบอร์</label>
+          <input type="text" id='phone' name="phone" required />
+        </div>
+        <div className={styles.input}>
+          <label htmlFor='room'>ชั้นเเละห้อง</label>
+          <input type="text" id='roon' name="room" required />
+        </div>
+
+        <div className={styles.input}>
+          <label htmlFor='number_capter'>เลขที่เเละตอน</label>
+          <input type="text" id='number_capter' name="number_capter" required />
+        </div>
       </div>
-      <div className={styles.input}>
-        <label htmlFor='game'>Game</label>
-        <input type="text" name="game" required />
+
+      <div className={styles.form_Sention}>
+        <div className={styles.input}>
+          <label htmlFor="name_game">ชื่อในเกม</label>
+          <input type="text" id='name_game' name="name_game" required />
+        </div>
+
+        <div className={styles.input}>
+          <label htmlFor="openID">OpenID</label>
+          <input type="text" id='openID' name="openID" required />
+        </div>
       </div>
-      <div className={styles.input}>
-        <label htmlFor='phone'>เบอร์</label>
-        <input type="text" name="phone" required />
+
+      <div className={styles.position_Sention}>
+        <label for="date">ตำแหน่งในเกม</label>
+        <div className={styles.category_select_position}>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="dsl" value="DSL" required />
+            <label htmlFor="dsl">DSL (ออฟเลน, เลนดาร์ค)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="jug" value="JUG" required />
+            <label htmlFor="jug">JUG (ป่า, ฟาร์ม)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="mid" value="MID" required />
+            <label htmlFor="mid">MID (เลนกลาง)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="adl" value="ADL" required />
+            <label htmlFor="adl">ADL (แครี่, เลนมังกร)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="sup" value="SUP" required />
+            <label htmlFor="sup">SUP (ซัพพอร์ต, โรมมิ่ง)</label>
+          </div>
+        </div>
       </div>
-      <div className={styles.input}>
-        <label htmlFor="date">กรุณาเลือกวันที่:</label>
-        <input type="date" id="date" name="date" required />
-      </div>
-      <br />
-      <div className={styles.input}>
-        {applicantNumber > 1 && <button type="button" onClick={onBack}>Back</button>}
-        <input className={styles.Button} type="submit" value={loading ? "Loading..." : applicantNumber < 5 ? "Next" : "Submit"} />
-      </div>
+
     </form>
   )
 }
+export default Formtest;
 
-const Formtest = ({ setLoading }) => {
-  const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec"
-  const [applicants, setApplicants] = useState(Array(5).fill({}))
-  const [step, setStep] = useState(1)
-
-  const NextStep = () => {
-    setStep(step + 1)
-  }
-
-  const BackStep = () => {
-    setStep(step - 1)
-  }
-
-  const onSave = (applicantNumber, data) => {
-    const newApplicants = [...applicants]
-    newApplicants[applicantNumber - 1] = data
-    setApplicants(newApplicants)
-    if (applicantNumber === 5) {
-      handleSubmitAll(newApplicants)
-    }
-  }
-
-  // const handleSubmitAll = (applicants) => {
-  //   setLoading(true)
-  //   const formData = new FormData()
-  //   applicants.forEach((applicant, index) => {
-  //     Object.keys(applicant).forEach(key => {
-  //       formData.append(`applicant${index + 1}_${key}`, applicant[key])
-  //     })
-  //   })
-
-  //   fetch(scriptUrl, {
-  //     method: 'POST',
-  //     body: formData,
-  //   }).then(res => {
-  //     console.log("ส่งเรียบร้อยแล้ว")
-  //     setLoading(false)
-  //     setStep(1)
-  //     setApplicants(Array(5).fill({}))
-  //     alert("การสมัครเสร็จสมบูรณ์!")
-  //   }).catch(err => {
-  //     console.log("Error", err)
-  //     setLoading(false)
-  //   })
-  // }
-  const handleSubmitAll = () => {
-    if (typeof setLoading === 'function') {
-      setLoading(true)
-    }
-    const formData = new FormData()
-    applicants.forEach((applicant, index) => {
-      Object.keys(applicant).forEach(key => {
-        formData.append(`applicant${index + 1}_${key}`, applicant[key])
-      })
-    })
-
-    fetch(scriptUrl, {
-      method: 'POST',
-      body: formData,
-    }).then(res => {
-      console.log("ส่งเรียบร้อยแล้ว")
-      if (typeof setLoading === 'function') {
-        setLoading(false)
-      }
-      setStep(1)
-      setApplicants(Array(5).fill({}))
-      alert("การสมัครเสร็จสมบูรณ์!")
-    }).catch(err => {
-      console.log("Error", err)
-      if (typeof setLoading === 'function') {
-        setLoading(false)
-      }
-    })
-  }
-
-  return (
-    <section id={styles.Form}>
-      <div className={styles.Form}>
-        <div className={styles.main_Form}>
-          <div className={styles.head_title}>
-            <div className={styles.background}></div>
-            <h1 className={styles.title_shadow}>ลงทะเบียน</h1>
-            <h1 className={styles.title}>ลงทะเบียน</h1>
-          </div>
-
-          {step === 1 && <Rule onNext={NextStep} />}
-          {step > 1 && step <= 6 && (
-            <ApplicantForm
-              applicantNumber={step - 1}
-              onNext={NextStep}
-              onBack={BackStep}
-              onSave={onSave}
-            />
-          )}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-export default Formtest

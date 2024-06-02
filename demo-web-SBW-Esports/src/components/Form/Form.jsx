@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import styles from './Form.module.css'
+import { DataApp } from '../../App'
 
 const Rule = ({ onNext }) => {
   return (
@@ -49,25 +50,54 @@ const Rule = ({ onNext }) => {
   )
 }
 
-const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
+const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading, handleSubmitAll }) => {
   const formRef = useRef(null)
-  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
     const formData = new FormData(formRef.current)
-    const data = Object.fromEntries(formData.entries())
-    onSave(applicantNumber, data)
-    if (applicantNumber < 5) {
-      onNext()
-    } else {
-      onNext()
+
+    const prefix = formData.get('prefix')
+    const name = formData.get('name')
+    const surname = formData.get('surname')
+    const phone = formData.get('phone')
+    const date = formData.get('date')
+    const room = formData.get('room')
+    const number_capter = formData.get('number_capter')
+    const name_game = formData.get('name_game')
+    const openID = formData.get('openID')
+    const position = formData.get('position')
+
+    if (!prefix || !name || !surname || !phone || !date || !room || !number_capter || !name_game || !openID || !position) {
+      console.log("กรุณากรอกข้อมูลให้ครบถ้วน")
+      return;
     }
+
+    const formattedDate = new Date(date)
+    const day = formattedDate.getDate()
+    const month = formattedDate.getMonth() + 1
+    const year = formattedDate.getFullYear()
+    const formattedDateString = `${day}/${month}/${year}`
+
+    formData.set('date', formattedDateString)
+
+    const data = Object.fromEntries(formData.entries());
+    onSave(applicantNumber, data);
+    console.log(data)
+    if (applicantNumber < 5) {
+      formRef.current.reset();
+      onNext();
+    } else {
+      handleSubmitAll();
+      onNext();
+    }
+    console.log("applicantNumber",applicantNumber);
   }
 
   return (
     <div className={styles.section}>
-      <form className={styles.main_sention_Forn} ref={formRef} onSubmit={handleSubmit} name="google-sheet">
+      <form className={styles.main_sention_Form} ref={formRef} onSubmit={handleSubmit} name="google-sheet">
         <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber}</h1>
         <div className={styles.form_Sention}>
           <div className={styles.select}>
@@ -150,96 +180,116 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
             </div>
           </div>
         </div>
-        
+
       </form>
 
       <div className={styles.Button_sention_NextBack}>
         <a className={`${styles.Button} ${styles.onBack}`} type="button" onClick={onBack}>ย้อนกลับ</a>
         {applicantNumber < 5 ? (
-          <a className={`${styles.Button} ${styles.onNext}`} type="button" onClick={() => handleSubmit(new Event('submit'))}>ถัดไป</a>
+          <a className={`${styles.Button} ${styles.onNext}`} type="button" onClick={handleSubmit}>ถัดไป</a>
         ) : (
           <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={() => handleSubmit(new Event('submit'))}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
         )}
       </div>
-
-
     </div>
   )
 }
-const Form = ({ setLoading }) => {
+
+const Form = () => {
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec"
+  
   const [applicants, setApplicants] = useState([])
   const [step, setStep] = useState(1)
   const [applicantNumber, setApplicantNumber] = useState(0)
+  const [loading, setLoading] = useState(false)
+  const { email } = useContext(DataApp)
 
   const NextStep = () => {
     if (applicantNumber < 5) {
-      setApplicantNumber(applicantNumber + 1);
+      setApplicantNumber(applicantNumber + 1)
       setStep(step + 1)
     } else {
-      handleSubmitAll();
+      handleSubmitAll()
     }
-  }
+  };
+
   const BackStep = () => {
-    setApplicantNumber(applicantNumber - 1);
+    setApplicantNumber(applicantNumber - 1)
     setStep(step - 1)
-  }
+  };
+
   const onSave = (applicantNumber, data) => {
     const newApplicants = [...applicants]
-    newApplicants[applicantNumber - 1] = data
+    newApplicants[applicantNumber -  1] = data
     setApplicants(newApplicants)
-  }
+    console.log("SUM data form",newApplicants)
+  };
 
-  const handleSubmitAll = () => {
-    setLoading(true)
-    const formData = new FormData()
+  const handleSubmitAll = async () => {
+    setLoading(true);
+    const formData = new FormData();
     applicants.forEach((applicant, index) => {
-      Object.keys(applicant).forEach(key => {
-        formData.append(`applicant${index + 1}_${key}`, applicant[key])
+      for (const [key, value] of Object.entries(applicant)) {
+        formData.append(`${key}_${index + 1}`, value);
+      }
+    });
+    
+    formData.append('email', email)
+
+    try {
+      const response = await fetch(scriptUrl, {
+        method: 'POST',
+        body: formData,
       });
-    });
-
-    fetch(scriptUrl, {
-      method: 'POST',
-      body: formData,
-    }).then(res => {
-      console.log("ส่งเรียบร้อยแล้ว")
-      setLoading(false)
-      setStep(1)
-      setApplicants([])
-      alert("การสมัครเสร็จสมบูรณ์!")
-    }).catch(err => {
-      console.log("Error", err)
-      setLoading(false)
-    });
-  }
-
-
+  
+      if (response.ok) {
+        console.log("ส่งเรียบร้อยแล้ว");
+        setLoading(false);
+        setStep(1);
+        setApplicants([]);
+        alert("การสมัครเสร็จสมบูรณ์!");
+        console.log("การสมัครเสร็จสมบูรณ์");
+        // if (formRef.current) {
+        //   formRef.current.reset();
+        // }
+        location.reload();
+      } else {
+        alert("เกิดข้อผิดพลาดในการส่งข้อมูล!");
+        console.log("เกิดข้อผิดพลาดในการส่งข้อมูล");
+        setLoading(false);
+      }
+    } catch (err) {
+      console.log("Error", err);
+      setLoading(false);
+    }
+  };
+  
   return (
     <section id={styles.Form}>
       <div className={styles.Form}>
         <div className={styles.main_Form}>
-
           <div className={styles.head_title}>
             <div className={styles.background}></div>
             <h1 className={styles.title_shadow}>ลงทะเบียน</h1>
             <h1 className={styles.title}>ลงทะเบียน</h1>
           </div>
 
-          {step === 1 && < Rule onNext={NextStep} />}
+          {step === 1 && <Rule onNext={NextStep} />}
           {step > 1 && step <= 6 && (
             <ApplicantForm
               applicantNumber={applicantNumber}
               onNext={NextStep}
               onBack={BackStep}
               onSave={onSave}
+              loading={loading}
+              setLoading={setLoading}
+              handleSubmitAll={handleSubmitAll}
             />
           )}
-
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;
