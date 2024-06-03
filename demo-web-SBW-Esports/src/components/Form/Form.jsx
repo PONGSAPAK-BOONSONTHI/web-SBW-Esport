@@ -85,14 +85,13 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading, handl
     const data = Object.fromEntries(formData.entries());
     onSave(applicantNumber, data);
     console.log(data)
-    if (applicantNumber < 5) {
+    if (applicantNumber < 6) {
       formRef.current.reset();
       onNext();
     } else {
-      handleSubmitAll();
       onNext();
     }
-    console.log("applicantNumber",applicantNumber);
+    console.log("applicantNumber", applicantNumber);
   }
 
   return (
@@ -185,10 +184,10 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading, handl
 
       <div className={styles.Button_sention_NextBack}>
         <a className={`${styles.Button} ${styles.onBack}`} type="button" onClick={onBack}>ย้อนกลับ</a>
-        {applicantNumber < 5 ? (
+        {applicantNumber < 6 ? (
           <a className={`${styles.Button} ${styles.onNext}`} type="button" onClick={handleSubmit}>ถัดไป</a>
         ) : (
-          <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={() => handleSubmit(new Event('submit'))}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
+          <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmit}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
         )}
       </div>
     </div>
@@ -197,17 +196,17 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading, handl
 
 const Form = () => {
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec"
-  
+  const { email } = useContext(DataApp)
+
   const [applicants, setApplicants] = useState([])
   const [step, setStep] = useState(1)
   const [applicantNumber, setApplicantNumber] = useState(0)
   const [loading, setLoading] = useState(false)
-  const { email } = useContext(DataApp)
 
   const NextStep = () => {
-    if (applicantNumber < 5) {
-      setApplicantNumber(applicantNumber + 1)
+    if (applicantNumber < 6) {
       setStep(step + 1)
+      setApplicantNumber(applicantNumber + 1)
     } else {
       handleSubmitAll()
     }
@@ -220,20 +219,23 @@ const Form = () => {
 
   const onSave = (applicantNumber, data) => {
     const newApplicants = [...applicants]
-    newApplicants[applicantNumber -  1] = data
+    newApplicants[applicantNumber - 1] = data
     setApplicants(newApplicants)
-    console.log("SUM data form",newApplicants)
-  };
+    console.log("Sum data form", newApplicants)
+  }
 
   const handleSubmitAll = async () => {
     setLoading(true);
     const formData = new FormData();
-    applicants.forEach((applicant, index) => {
-      for (const [key, value] of Object.entries(applicant)) {
-        formData.append(`${key}_${index + 1}`, value);
-      }
-    });
-    
+
+    applicants
+      .filter(applicant => applicant !== undefined && applicant !== null)
+      .forEach((applicant, index) => {
+        for (const [key, value] of Object.entries(applicant)) {
+          formData.append(`${key}_${index + 1}`, value);
+        }
+      });
+
     formData.append('email', email)
 
     try {
@@ -241,7 +243,7 @@ const Form = () => {
         method: 'POST',
         body: formData,
       });
-  
+
       if (response.ok) {
         console.log("ส่งเรียบร้อยแล้ว");
         setLoading(false);
@@ -249,9 +251,6 @@ const Form = () => {
         setApplicants([]);
         alert("การสมัครเสร็จสมบูรณ์!");
         console.log("การสมัครเสร็จสมบูรณ์");
-        // if (formRef.current) {
-        //   formRef.current.reset();
-        // }
         location.reload();
       } else {
         alert("เกิดข้อผิดพลาดในการส่งข้อมูล!");
@@ -263,7 +262,7 @@ const Form = () => {
       setLoading(false);
     }
   };
-  
+
   return (
     <section id={styles.Form}>
       <div className={styles.Form}>
@@ -285,6 +284,22 @@ const Form = () => {
               setLoading={setLoading}
               handleSubmitAll={handleSubmitAll}
             />
+          )}
+          {step === 7 && (
+            <div>
+              <div>
+                {applicants.map((item, index) => (
+                  <div id={index}>
+                    <h1>{item.timestamp}</h1>
+                    <h1>{item.prefix} {item.name} {item.surname}</h1>
+                    <p>เบอร์ : {item.phone}</p>
+                  </div>
+                ))}
+              </div>
+              <div className={styles.Button_sention_NextBack}>
+                <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
+              </div>
+            </div>
           )}
         </div>
       </div>

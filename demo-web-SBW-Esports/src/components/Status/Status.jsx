@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import styles from './Status.module.css'
+// import styles from './Status.module.css'
 import { DataApp } from '../../App'
 
 const Status = () => {

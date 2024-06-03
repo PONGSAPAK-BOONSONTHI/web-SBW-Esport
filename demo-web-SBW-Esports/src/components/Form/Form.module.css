@@ -66,6 +66,7 @@
     flex-direction: column;
 }
 .main_sention_Form input {
+    width: 100%;
     font-size: 15px;
     padding: 10px;
     border: 1px solid #ccc;
