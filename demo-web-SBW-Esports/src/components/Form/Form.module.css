@@ -53,6 +53,9 @@
     border-radius: 0 0 50px 50px;
     gap: 10px;
 }
+.main_sention_Form, .rule, .section_Data {
+    padding: 20px 0;
+}
 .main_sention_Form .title, .rule .title, .aggregate_Data .title{
     font-size: 45px;
     color: #f9a31b;
@@ -111,10 +114,10 @@
 .position input[type="radio"]:checked + label {
     color: #007bff;
 }
-.Button_sention_Righ,  .Button_sention_NextBack{
-    padding: 40px 0;
+.Button_sention_Right,  .Button_sention_NextBack{
+    padding: 23px 0;
 }
-.Button_sention_Righ {
+.Button_sention_Right {
     display: flex;
     justify-content: end;
 }
@@ -170,6 +173,13 @@
     z-index: 1;
 }
 .section_Data {
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.Data .title_Data {
+    font-size: 30px;
+}
+.Data .name_Data {
+    font-size: 25px;
 }

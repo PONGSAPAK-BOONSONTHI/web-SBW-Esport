@@ -50,11 +50,12 @@ const Rule = ({ onNext }) => {
   )
 }
 
-const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading }) => {
+const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
   const formRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     const formData = new FormData(formRef.current)
     const prefix = formData.get('prefix')
     const name = formData.get('name')
@@ -85,7 +86,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading }) => 
     onSave(applicantNumber, data);
     console.log(data)
     if (applicantNumber < 6) {
-      // formRef.current.reset();
+      formRef.current.reset();
       onNext();
     } else {
       onNext();
@@ -96,7 +97,11 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading }) => 
   return (
     <div className={styles.section}>
       <form className={styles.main_sention_Form} ref={formRef} onSubmit={handleSubmit} name="google-sheet">
-        <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber}</h1>
+        {applicantNumber < 6 ? (
+          <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber}</h1>
+        ) : (
+          <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber} (ตัวสำรอง)</h1>
+        )}
         <div className={styles.form_Sention}>
           <div className={styles.select}>
             <label htmlFor='prefix'>คำนำหน้า</label>
@@ -122,7 +127,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading }) => 
 
         <div className={styles.form_Sention}>
           <div className={styles.input}>
-            <label for="date">วัน/เดือน/ปีเกิด</label>
+            <label for="date">วันเกิด</label>
             <input type="date" id="date" name="date" required />
           </div>
 
@@ -157,23 +162,23 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading }) => 
           <label for="date">ตำแหน่งในเกม</label>
           <div className={styles.category_select_position}>
             <div className={styles.position}>
-              <input type="radio" name="position" id="dsl" value="DSL" required />
+              <input type="radio" name="position" id="dsl" value="DSL (ออฟเลน, เลนดาร์ค)" required />
               <label htmlFor="dsl">DSL (ออฟเลน, เลนดาร์ค)</label>
             </div>
             <div className={styles.position}>
-              <input type="radio" name="position" id="jug" value="JUG" required />
+              <input type="radio" name="position" id="jug" value="JUG (ป่า, ฟาร์ม)" required />
               <label htmlFor="jug">JUG (ป่า, ฟาร์ม)</label>
             </div>
             <div className={styles.position}>
-              <input type="radio" name="position" id="mid" value="MID" required />
+              <input type="radio" name="position" id="mid" value="MID (เลนกลาง)" required />
               <label htmlFor="mid">MID (เลนกลาง)</label>
             </div>
             <div className={styles.position}>
-              <input type="radio" name="position" id="adl" value="ADL" required />
+              <input type="radio" name="position" id="adl" value="ADL (แครี่, เลนมังกร)" required />
               <label htmlFor="adl">ADL (แครี่, เลนมังกร)</label>
             </div>
             <div className={styles.position}>
-              <input type="radio" name="position" id="sup" value="SUP" required />
+              <input type="radio" name="position" id="sup" value="SUP (ซัพพอร์ต, โรมมิ่ง)" required />
               <label htmlFor="sup">SUP (ซัพพอร์ต, โรมมิ่ง)</label>
             </div>
           </div>
@@ -183,11 +188,38 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading }) => 
 
       <div className={styles.Button_sention_NextBack}>
         <a className={`${styles.Button} ${styles.onBack}`} type="button" onClick={onBack}>ย้อนกลับ</a>
-        {applicantNumber < 6 ? (
-          <a className={`${styles.Button} ${styles.onNext}`} type="button" onClick={handleSubmit}>ถัดไป</a>
-        ) : (
-          <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmit}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
-        )}
+        <a className={`${styles.Button} ${styles.onNext}`} type="button" onClick={handleSubmit}>ถัดไป</a>
+      </div>
+    </div>
+  )
+}
+
+const AggregateData = ({ applicants, onBack, handleSubmitAll, loading }) => {
+  return (
+    <div className={styles.section}>
+      <div className={styles.aggregate_Data}>
+        <h1 className={styles.title}>ตรวจสอบคำตอบอีกครั้ง</h1>
+
+        <div className={styles.section_Data}>
+          {applicants.map((item, index) => (
+            <div className={styles.Data}>
+              {index < 6 ? (
+                <h1 className={styles.title_Data}>ผู้ลงสมัครคนที่ {index + 1}</h1>
+              ) : (
+                <h1 className={styles.title_Data}>ผู้ลงสมัครคนที่ {index + 1} (ตัวสำรอง)</h1>
+              )}
+              <h1 className={styles.name_Data}>{item.prefix} {item.name} {item.surname} {item.room} {item.number_capter}</h1>
+              <p>เกิดวันที่ : {item.date} เบอร์ : {item.phone}</p>
+              <p>ชื่อในเกม : {item.name_game} OpenID : {item.openID}</p>
+              <p>ตำแหน่งในเกม : {item.position}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={styles.Button_sention_NextBack}>
+        <a className={`${styles.Button} ${styles.onBack}`} type="button" onClick={onBack}>ย้อนกลับ</a>
+        <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
       </div>
     </div>
   )
@@ -203,7 +235,7 @@ const Form = () => {
   const [loading, setLoading] = useState(false)
 
   const NextStep = () => {
-    if (applicantNumber < 6) {
+    if (applicantNumber < 7) {
       setStep(step + 1)
       setApplicantNumber(applicantNumber + 1)
     } else {
@@ -262,9 +294,6 @@ const Form = () => {
     }
   };
 
-  // const AggregateData = () => {
-
-  // }
   return (
     <section id={styles.Form}>
       <div className={styles.Form}>
@@ -274,82 +303,26 @@ const Form = () => {
             <h1 className={styles.title_shadow}>ลงทะเบียน</h1>
             <h1 className={styles.title}>ลงทะเบียน</h1>
           </div>
-          <div className={styles.section}>
-            <div className={styles.aggregate_Data}>
-              <h1 className={styles.title}>ตรวจสอบคำตอบอีกครั้ง</h1>
-              <div>
-                <div className={styles.section_Data}>
-                  <h1>ผู้ลงสมัครคนที่ 1</h1>
-                  <div>
-                    <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1> 
-                    
-                  </div>
-                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
-                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
-                </div>
-                <div>
-                  <h1>ผู้ลงสมัครคนที่ 2</h1>
-                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
-                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
-                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
-                </div>
-                <div>
-                  <h1>ผู้ลงสมัครคนที่ 3</h1>
-                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
-                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
-                  <p>ชื่อในเกม : PONG</p>
-                  <p>OpenID : 03123132123123132123</p>
-                </div>
-                <div>
-                  <h1>ผู้ลงสมัครคนที่ 4</h1>
-                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
-                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
-                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
-                </div>
-                <div>
-                  <h1>ผู้ลงสมัครคนที่ 5</h1>
-                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
-                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
-                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
-                </div>
-              </div>
-              <div className={styles.Button_sention_Righ}>
-                <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
-              </div>
-            </div>
-          </div>
 
-          {/* {step === 1 && <Rule onNext={NextStep} />}
-          {step > 1 && step <= 6 && (
+          {step === 1 && <Rule onNext={NextStep} />}
+          {step > 1 && step <= 7 && (
             <ApplicantForm
               applicantNumber={applicantNumber}
               onNext={NextStep}
               onBack={BackStep}
               onSave={onSave}
-              loading={loading}
-              setLoading={setLoading}
-              handleSubmitAll={handleSubmitAll}
             />
           )}
-          {step === 7 && (
-            <div>
-              <div>
-                {applicants.map((item, index) => (
-                  <div id={index}>
-                    <h1>{item.timestamp}</h1>
-                    <h1>{item.prefix} {item.name} {item.surname}</h1>
-                    <p>เบอร์ : {item.phone}</p>
-                  </div>
-                ))}
-              </div>
-              <div className={styles.Button_sention_NextBack}>
-                <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
-              </div>
-            </div>
-          )} */}
+          {step === 8 &&
+            <AggregateData
+              applicants={applicants}
+              onBack={BackStep}
+              handleSubmitAll={handleSubmitAll}
+              loading={loading}
+            />}
         </div>
       </div>
-    </section>
+    </section >
   );
 };
 
