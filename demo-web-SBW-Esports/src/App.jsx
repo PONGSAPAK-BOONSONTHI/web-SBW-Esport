@@ -10,8 +10,8 @@ import Activity from './components/Activity/Activity.jsx'
 import Origin from './components/Origin/Origin.jsx'
 import MainContact from './components/MainContact/MainContact.jsx'
 import Contact from './components/Contact/Contact.jsx'
-import Status from './components/Status/Status.jsx'
 import Form from './components/Form/Form.jsx'
+import Status from './components/Status/Status.jsx'
 import Formtest from './components/Form/Formtest.jsx'
 
 export const DataApp = createContext();

@@ -6,7 +6,12 @@ const MainContact = () => {
     <section id={styles.MainContact}>
     <div className={styles.MainContact}>
       <h1>ติดต่อพวกเราได้ที่</h1>
-      <p>ยังไม่ทำ</p>
+      </div>
+      <div className={styles.container}>
+      <div className={styles.contact}>
+        <h2>OUR TEAM</h2>
+
+        </div>
     </div>
   </section>
   )

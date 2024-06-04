@@ -43,21 +43,19 @@ const Rule = ({ onNext }) => {
         </span>
       </div>
 
-      <div className={styles.Button_sention_Next}>
+      <div className={styles.Button_sention_Right}>
         <a className={`${styles.Button} ${styles.onNext}`} onClick={onNext}>ถัดไป</a>
       </div>
     </div>
   )
 }
 
-const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading, handleSubmitAll }) => {
+const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading }) => {
   const formRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     const formData = new FormData(formRef.current)
-
     const prefix = formData.get('prefix')
     const name = formData.get('name')
     const surname = formData.get('surname')
@@ -70,6 +68,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading, handl
     const position = formData.get('position')
 
     if (!prefix || !name || !surname || !phone || !date || !room || !number_capter || !name_game || !openID || !position) {
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน!");
       console.log("กรุณากรอกข้อมูลให้ครบถ้วน")
       return;
     }
@@ -86,7 +85,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, loading, handl
     onSave(applicantNumber, data);
     console.log(data)
     if (applicantNumber < 6) {
-      formRef.current.reset();
+      // formRef.current.reset();
       onNext();
     } else {
       onNext();
@@ -263,6 +262,9 @@ const Form = () => {
     }
   };
 
+  // const AggregateData = () => {
+
+  // }
   return (
     <section id={styles.Form}>
       <div className={styles.Form}>
@@ -272,8 +274,52 @@ const Form = () => {
             <h1 className={styles.title_shadow}>ลงทะเบียน</h1>
             <h1 className={styles.title}>ลงทะเบียน</h1>
           </div>
+          <div className={styles.section}>
+            <div className={styles.aggregate_Data}>
+              <h1 className={styles.title}>ตรวจสอบคำตอบอีกครั้ง</h1>
+              <div>
+                <div className={styles.section_Data}>
+                  <h1>ผู้ลงสมัครคนที่ 1</h1>
+                  <div>
+                    <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1> 
+                    
+                  </div>
+                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
+                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
+                </div>
+                <div>
+                  <h1>ผู้ลงสมัครคนที่ 2</h1>
+                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
+                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
+                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
+                </div>
+                <div>
+                  <h1>ผู้ลงสมัครคนที่ 3</h1>
+                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
+                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
+                  <p>ชื่อในเกม : PONG</p>
+                  <p>OpenID : 03123132123123132123</p>
+                </div>
+                <div>
+                  <h1>ผู้ลงสมัครคนที่ 4</h1>
+                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
+                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
+                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
+                </div>
+                <div>
+                  <h1>ผู้ลงสมัครคนที่ 5</h1>
+                  <h1>นาย พงศภัค บุญสนธิ ม.6/9 18ข</h1>
+                  <p>เกิดวันที่ : 1/6/2024 เบอร์ : 0649638354</p>
+                  <p>ชื่อในเกม : PONG OpenID : 03123132123123132123</p>
+                </div>
+              </div>
+              <div className={styles.Button_sention_Righ}>
+                <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
+              </div>
+            </div>
+          </div>
 
-          {step === 1 && <Rule onNext={NextStep} />}
+          {/* {step === 1 && <Rule onNext={NextStep} />}
           {step > 1 && step <= 6 && (
             <ApplicantForm
               applicantNumber={applicantNumber}
@@ -300,7 +346,7 @@ const Form = () => {
                 <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </section>

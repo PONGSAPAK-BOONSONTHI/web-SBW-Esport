@@ -53,7 +53,7 @@
     border-radius: 0 0 50px 50px;
     gap: 10px;
 }
-.main_sention_Form .title, .rule .title{
+.main_sention_Form .title, .rule .title, .aggregate_Data .title{
     font-size: 45px;
     color: #f9a31b;
 }
@@ -111,10 +111,10 @@
 .position input[type="radio"]:checked + label {
     color: #007bff;
 }
-.Button_sention_Next,  .Button_sention_NextBack{
+.Button_sention_Righ,  .Button_sention_NextBack{
     padding: 40px 0;
 }
-.Button_sention_Next {
+.Button_sention_Righ {
     display: flex;
     justify-content: end;
 }
@@ -168,4 +168,8 @@
     height: 600px;
     border-radius: 20px;
     z-index: 1;
+}
+.section_Data {
+    display: flex;
+    gap: 10px;
 }
