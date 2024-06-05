@@ -50,8 +50,11 @@ const Rule = ({ onNext }) => {
   )
 }
 
-const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, prefix, setPrefix, handlePrefixChange }) => {
+const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData }) => {
   const formRef = useRef(null)
+
+  const [prefix, setPrefix] = useState('')
+  const [date, setDate] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -83,13 +86,12 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, pref
 
     formData.set('date', formattedDateString)
 
-    const data = Object.fromEntries(formData.entries())
+    const data = { ...Object.fromEntries(formData.entries()), prefix, date }
     onSave(applicantNumber, data)
     console.log(data)
     if (applicantNumber < 6) {
       onNext();
       formRef.current.reset()
-      setPrefix('')
     } else {
       onNext();
     }
@@ -107,7 +109,10 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, pref
         <div className={styles.form_Sention}>
           <div className={styles.select}>
             <label htmlFor='prefix'>คำนำหน้า</label>
-            <select id='prefix' name="prefix" value={prefix} onChange={handlePrefixChange}>
+            <select id='prefix' name="prefix"
+              value={prefix === '' ? '' : formData.prefix}
+              onChange={(e) => setPrefix(e.target.value)}
+            >
               <option value="">-</option>
               <option value="เด็กชาย">เด็กชาย</option>
               <option value="เด็กหญิง">เด็กหญิง</option>
@@ -130,7 +135,10 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, pref
         <div className={styles.form_Sention}>
           <div className={styles.input}>
             <label for="date">วันเกิด</label>
-            <input type="date" id="date" name="date" defaultValue={formData.data || ''} required />
+            <input type="date" id="date" name="date"
+              defaultValue={date === '' || formData.date}
+              onChange={(e) => setDate(e.target.value)} required
+            />
           </div>
 
           <div className={styles.input}>
@@ -161,7 +169,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, pref
         </div>
 
         <div className={styles.category_select_position}>
-        <label for="date">ตำแหน่งในเกม</label>
+          <label for="date">ตำแหน่งในเกม</label>
           <div className={styles.position}>
             <input type="radio" name="position" id="dsl" value="DSL (ออฟเลน, เลนดาร์ค)"
               defaultChecked={formData.position === "DSL (ออฟเลน, เลนดาร์ค)"} required />
@@ -225,7 +233,7 @@ const AggregateData = ({ applicants, onBack, handleSubmitAll, loading }) => {
 
       <div className={styles.Button_sention_NextBack}>
         <a className={`${styles.Button} ${styles.onBack}`} type="button" onClick={onBack}>ย้อนกลับ</a>
-        <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "Loading..." : "ส่งคำตอบ"}</a>
+        <a className={`${styles.Button} ${styles.onSubmit}`} type="button" onClick={handleSubmitAll}>{loading ? "กำลังบันทึก..." : "ส่งคำตอบ"}</a>
       </div>
     </div>
   )
@@ -239,11 +247,6 @@ const Form = () => {
   const [step, setStep] = useState(1)
   const [applicantNumber, setApplicantNumber] = useState(0)
   const [loading, setLoading] = useState(false)
-  
-  const [prefix, setPrefix] = useState('')
-  const handlePrefixChange = (e) => {
-    setPrefix(e.target.value)
-  }
 
   const NextStep = () => {
     if (applicantNumber < 7) {
@@ -252,11 +255,13 @@ const Form = () => {
     } else {
       handleSubmitAll()
     }
+    window.scrollTo(0,0)
   };
 
   const BackStep = () => {
     setApplicantNumber(applicantNumber - 1)
     setStep(step - 1)
+    window.scrollTo(0,0)
   };
 
   const onSave = (applicantNumber, data) => {
@@ -323,9 +328,6 @@ const Form = () => {
               onBack={BackStep}
               onSave={onSave}
               formData={applicants[applicantNumber - 1] || {}}
-              prefix={prefix}
-              setPrefix={setPrefix}
-              handlePrefixChange={handlePrefixChange}
             />
           )}
           {step === 8 &&

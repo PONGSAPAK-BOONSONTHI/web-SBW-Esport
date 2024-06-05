@@ -100,7 +100,6 @@ function App() {
               <Form />
               {/* <Formtest />? */}
               {/* <Status /> */}
-              <Contact />
             </>
           }></Route>
         </Routes>

@@ -3,11 +3,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    min-height: 50vb;
-    font-size: 100px;
-    padding-top: 200px;
+    margin: 15vh 0;
 }
-.container{
+/* .container{
     padding: 130px;
 }
 .contact{
@@ -45,4 +43,28 @@ th {
 }
 .staff_item img{
     height: 200px;
+} */
+.Maintitle {
+    font-size: 90px;
+    padding-bottom: 50px;
+}
+.section_Team {
+    display: grid;
+    gap: 100px 300px;
+    grid-template-columns: repeat(3, 1fr);
+}
+.person {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 13px;
+}
+.person h1{
+    font-size: 40px;
+}
+.person img {
+    width: 300px;
+}
+.person p{
+    font-size: 30px;
 }
