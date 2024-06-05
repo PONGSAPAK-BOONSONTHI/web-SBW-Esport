@@ -50,13 +50,14 @@ const Rule = ({ onNext }) => {
   )
 }
 
-const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
+const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, prefix, setPrefix, handlePrefixChange }) => {
   const formRef = useRef(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
     const formData = new FormData(formRef.current)
+
     const prefix = formData.get('prefix')
     const name = formData.get('name')
     const surname = formData.get('surname')
@@ -82,12 +83,13 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
 
     formData.set('date', formattedDateString)
 
-    const data = Object.fromEntries(formData.entries());
-    onSave(applicantNumber, data);
+    const data = Object.fromEntries(formData.entries())
+    onSave(applicantNumber, data)
     console.log(data)
     if (applicantNumber < 6) {
-      formRef.current.reset();
       onNext();
+      formRef.current.reset()
+      setPrefix('')
     } else {
       onNext();
     }
@@ -105,7 +107,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
         <div className={styles.form_Sention}>
           <div className={styles.select}>
             <label htmlFor='prefix'>คำนำหน้า</label>
-            <select id='prefix' name="prefix">
+            <select id='prefix' name="prefix" value={prefix} onChange={handlePrefixChange}>
               <option value="">-</option>
               <option value="เด็กชาย">เด็กชาย</option>
               <option value="เด็กหญิง">เด็กหญิง</option>
@@ -116,73 +118,77 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave }) => {
 
           <div className={styles.input}>
             <label htmlFor='name'>ชื่อ</label>
-            <input type="text" id='name' name="name" required />
+            <input type="text" id='name' name="name" defaultValue={formData.name || ''} required />
           </div>
 
           <div className={styles.input}>
             <label htmlFor='surname'>นามสกุล</label>
-            <input type="text" id="surname" name="surname" required />
+            <input type="text" id="surname" name="surname" defaultValue={formData.surname || ''} required />
           </div>
         </div>
 
         <div className={styles.form_Sention}>
           <div className={styles.input}>
             <label for="date">วันเกิด</label>
-            <input type="date" id="date" name="date" required />
+            <input type="date" id="date" name="date" defaultValue={formData.data || ''} required />
           </div>
 
           <div className={styles.input}>
             <label htmlFor='phone'>เบอร์</label>
-            <input type="text" id='phone' name="phone" required />
+            <input type="text" id='phone' name="phone" defaultValue={formData.phone || ''} required />
           </div>
           <div className={styles.input}>
             <label htmlFor='room'>ชั้นเเละห้อง</label>
-            <input type="text" id='roon' name="room" required />
+            <input type="text" id='roon' name="room" defaultValue={formData.room || ''} required />
           </div>
 
           <div className={styles.input}>
             <label htmlFor='number_capter'>เลขที่เเละตอน</label>
-            <input type="text" id='number_capter' name="number_capter" required />
+            <input type="text" id='number_capter' name="number_capter" defaultValue={formData.number_capter || ''} required />
           </div>
         </div>
 
         <div className={styles.form_Sention}>
           <div className={styles.input}>
             <label htmlFor="name_game">ชื่อในเกม</label>
-            <input type="text" id='name_game' name="name_game" required />
+            <input type="text" id='name_game' name="name_game" defaultValue={formData.name_game || ''} required />
           </div>
 
           <div className={styles.input}>
             <label htmlFor="openID">OpenID</label>
-            <input type="text" id='openID' name="openID" required />
+            <input type="text" id='openID' name="openID" defaultValue={formData.openID || ''} required />
           </div>
         </div>
 
-        <div className={styles.position_Sention}>
-          <label for="date">ตำแหน่งในเกม</label>
-          <div className={styles.category_select_position}>
-            <div className={styles.position}>
-              <input type="radio" name="position" id="dsl" value="DSL (ออฟเลน, เลนดาร์ค)" required />
-              <label htmlFor="dsl">DSL (ออฟเลน, เลนดาร์ค)</label>
-            </div>
-            <div className={styles.position}>
-              <input type="radio" name="position" id="jug" value="JUG (ป่า, ฟาร์ม)" required />
-              <label htmlFor="jug">JUG (ป่า, ฟาร์ม)</label>
-            </div>
-            <div className={styles.position}>
-              <input type="radio" name="position" id="mid" value="MID (เลนกลาง)" required />
-              <label htmlFor="mid">MID (เลนกลาง)</label>
-            </div>
-            <div className={styles.position}>
-              <input type="radio" name="position" id="adl" value="ADL (แครี่, เลนมังกร)" required />
-              <label htmlFor="adl">ADL (แครี่, เลนมังกร)</label>
-            </div>
-            <div className={styles.position}>
-              <input type="radio" name="position" id="sup" value="SUP (ซัพพอร์ต, โรมมิ่ง)" required />
-              <label htmlFor="sup">SUP (ซัพพอร์ต, โรมมิ่ง)</label>
-            </div>
+        <div className={styles.category_select_position}>
+        <label for="date">ตำแหน่งในเกม</label>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="dsl" value="DSL (ออฟเลน, เลนดาร์ค)"
+              defaultChecked={formData.position === "DSL (ออฟเลน, เลนดาร์ค)"} required />
+            <label htmlFor="dsl">DSL (ออฟเลน, เลนดาร์ค)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="jug" value="JUG (ป่า, ฟาร์ม)"
+              defaultChecked={formData.position === "JUG (ป่า, ฟาร์ม)"} required />
+            <label htmlFor="jug">JUG (ป่า, ฟาร์ม)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="mid" value="MID (เลนกลาง)"
+              defaultChecked={formData.position === "MID (เลนกลาง)"} required />
+            <label htmlFor="mid">MID (เลนกลาง)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="adl" value="ADL (แครี่, เลนมังกร)"
+              defaultChecked={formData.position === "ADL (แครี่, เลนมังกร)"} required />
+            <label htmlFor="adl">ADL (แครี่, เลนมังกร)</label>
+          </div>
+          <div className={styles.position}>
+            <input type="radio" name="position" id="sup" value="SUP (ซัพพอร์ต, โรมมิ่ง)"
+              defaultChecked={formData.position === "SUP (ซัพพอร์ต, โรมมิ่ง)"} required />
+            <label htmlFor="sup">SUP (ซัพพอร์ต, โรมมิ่ง)</label>
           </div>
         </div>
+
 
       </form>
 
@@ -229,10 +235,15 @@ const Form = () => {
   const scriptUrl = "https://script.google.com/macros/s/AKfycbzZuLMEqy4hwvS_ZvZRZ7i3wLrWIVbaMn9ijrCTlv2SmhkdE_U9jD6OEbaF6565juLcQg/exec"
   const { email } = useContext(DataApp)
 
-  const [applicants, setApplicants] = useState([])
+  const [applicants, setApplicants] = useState(Array(6).fill({}))
   const [step, setStep] = useState(1)
   const [applicantNumber, setApplicantNumber] = useState(0)
   const [loading, setLoading] = useState(false)
+  
+  const [prefix, setPrefix] = useState('')
+  const handlePrefixChange = (e) => {
+    setPrefix(e.target.value)
+  }
 
   const NextStep = () => {
     if (applicantNumber < 7) {
@@ -311,6 +322,10 @@ const Form = () => {
               onNext={NextStep}
               onBack={BackStep}
               onSave={onSave}
+              formData={applicants[applicantNumber - 1] || {}}
+              prefix={prefix}
+              setPrefix={setPrefix}
+              handlePrefixChange={handlePrefixChange}
             />
           )}
           {step === 8 &&
