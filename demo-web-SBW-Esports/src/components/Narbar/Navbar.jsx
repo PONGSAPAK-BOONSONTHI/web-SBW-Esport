@@ -11,7 +11,7 @@ const Nevbar = () => {
 
   const sections = [
     { to: '/', text: 'Home', style: 'button1' },
-    { to: '/public', text: 'ประชาสัมพันธ์', style: 'button2' },
+    { to: '/publicize', text: 'ประชาสัมพันธ์', style: 'button2' },
     { to: '/activity', text: 'กิจกรรม', style: 'button1' },
     { to: '/origin', text: 'ความเป็นมา', style: 'button2' },
     { to: '/contact', text: 'Contact', style: 'button1' }

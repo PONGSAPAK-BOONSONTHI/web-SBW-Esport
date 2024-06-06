@@ -52,6 +52,7 @@
     padding-bottom: 20px;
 }
 .doc2 {
+    font-size: 20px;
     text-align: center;
     color: #adadad;
 }
@@ -94,8 +95,19 @@
         width: 300px;
         height: 300px;
     }
+    .SBWep {
+        height: 150px;
+    }
+    .SBW {
+        height: 200px;
+        
+    }
+    .doc2 {
+        font-size: 18px;
+    }
+    
 }
-@media (max-width: 450px) {
+@media (max-width: 720px) {
     .Logo1 img {
         width: 150px;
     }
@@ -103,10 +115,19 @@
         font-size: 28px;
     }
     .doc1 span {
-        font-size: 15px;
+        font-size: 20px;
     }
     .boxshadow {
         width: 250px;
         height: 250px;
+    }
+    .SBWep{
+        height: 100px;
+    }
+    .SBW{
+        height: 150px;
+    }
+    .doc2{
+        font-size: 15px;
     }
 }

@@ -4,50 +4,69 @@
     justify-content: center;
     flex-direction: column;
     margin: 15vh 0;
+
 }
+
 .Maintitle {
     font-size: 90px;
     padding-bottom: 50px;
     padding-top: 50px;
     text-align: center;
+
 }
+
 .section_Team {
     display: grid;
-    gap: 100px 300px;
+    gap: 100px 200px;
     grid-template-columns: repeat(3, 1fr);
 }
+
 .person {
     display: flex;
-    align-items: left;
+    align-items: center;
     flex-direction: column;
     gap: 20px;
+    padding: 20px;
+    border-radius: 20px;
+    background-image: linear-gradient(to bottom, #340f6450, #4b3911);
+    box-shadow: 0 0 10px 5px rgba(0,0,0,0.3);
 }
-.person h1{
+
+.person h1 {
     font-size: 55px;
 }
+
 .person img {
     width: 200px;
+    border-radius: 70px;
 }
-.person p{
+
+.person p {
     font-size: 30px;
 
 }
-.contactimg img{
+
+.contactimg img {
     width: 30px;
     cursor: pointer;
 }
+
 .contact {
     display: flex;
     align-items: center;
     gap: 10px;
-    
+}
+.contact a {
+    height: 30px;
 }
 .contact img {
     width: 30px;
     height: 30px;
     transition: .3s ease;
+    opacity: 0.5;
 }
 .contact img:hover {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
+    opacity: 1;
 }

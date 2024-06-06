@@ -5,7 +5,7 @@ import { gapi } from 'gapi-script'
 
 import Navbar from './components/Narbar/Navbar.jsx'
 import Hero from './components/Hero/Hero.jsx'
-import Public from './components/Public/Public.jsx'
+import Publicize from './components/Publicized/Publicized.jsx'
 import Activity from './components/Activity/Activity.jsx'
 import Origin from './components/Origin/Origin.jsx'
 import MainContact from './components/MainContact/MainContact.jsx'
@@ -65,15 +65,15 @@ function App() {
           <Route path='/' element={
             <>
               <Hero />
-              <Public />
+              <Publicize />
               <Activity />
               <Origin />
               <Contact />
             </>
           } />
-          <Route path='/public' element={
+          <Route path='/publicize' element={
             <>
-              <Public />
+              <Publicize />
               <Contact />
             </>
           } />

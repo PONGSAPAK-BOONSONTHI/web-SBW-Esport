@@ -23,16 +23,15 @@ const Hero = () => {
         </div>
         <div className={styles.inHero}>
           <div className={styles.Logo2}>
-            <img src={LogoSBWep} height={160} alt="" />
-            <img src={LogoSBW} height={250} alt="" />
+            <img className={styles.SBWep} src={LogoSBWep} height={160} alt="" />
+            <img className={styles.SBW} src={LogoSBW} height={250} alt="" />
           </div>
 
           <div className={styles.doc2}>
             เพราะทักษะแห่งโลกอนาคตไม่ได้หยุดอยู่แค่ในห้องเรียน ห้องเรียน <span className={styles.text1}>E-sports</span>
             <br />
             จึงเป็นโครงการที่ออกแบบมาสำหรับเยาวชนรุ่นใหม่ที่จะช่วยส่งเสริมความสามารถและพัฒนาทักษะต่าง ๆ ที่จำเป็นในโลกดิจิทัล โดยมุ่งเน้นการให้ความรู้ด้านอาชีพในอุตสาหกรรมเกมและอีสปอร์ต
-            <br />
-            และเรา <span className={styles.text2}>โรงเรียนสระบุรีวิทยาคม</span> จะการสร้างความเข้าใจเกี่ยวกับอาชีพและเตรียมความพร้อมให้ผู้ที่มีความสนใจสามารถเข้าสู่ภาคธุรกิจและตลาดแรงงานได้ในอนาคต
+            <br />และเรา <span className={styles.text2}>โรงเรียนสระบุรีวิทยาคม</span> จะการสร้างความเข้าใจเกี่ยวกับอาชีพและเตรียมความพร้อมให้ผู้ที่มีความสนใจสามารถเข้าสู่ภาคธุรกิจและตลาดแรงงานได้ในอนาคต
           </div>
         </div>
       </div>
