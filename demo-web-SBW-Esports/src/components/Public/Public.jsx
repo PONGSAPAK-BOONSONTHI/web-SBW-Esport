@@ -6,7 +6,7 @@ const Public = () => {
     <section id={styles.Public}>
       <div className={styles.Public}>
         <h1>ประชาสัมพันธ์</h1>
-        <p>ยังไม่ได้ทำ </p>
+        <p> </p>
         
 
       </div>

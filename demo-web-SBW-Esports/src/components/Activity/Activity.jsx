@@ -20,8 +20,9 @@ const Activity = () => {
                 <img src={item.img1} height={500} alt="" />
               </div>
               <div className={styles.img_con2}>
-                <img src={item.img2} height={500} alt="" />
-                <img src={item.img3} height={500} alt="" />
+                <img src={item.img2} height={200} alt="" />
+                <img src={item.img3} height={200} alt="" />
+                <img src={item.img4} height={200} alt="" />
               </div>
             </div>
           </div>

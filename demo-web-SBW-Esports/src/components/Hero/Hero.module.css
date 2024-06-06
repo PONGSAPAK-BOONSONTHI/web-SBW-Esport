@@ -36,6 +36,7 @@
     font-size: 70px;
 }
 .doc1 span {
+    font-size: 20px;
     color: #adadad;
 }
 .inHero {
@@ -81,4 +82,31 @@
     background-color: #f9a31b;
     filter: blur(200px);
     border-radius: 50% 0 0 50%;
+}
+@media (max-width: 1024px) {
+    .Logo1 img {
+        width: 200px;
+    }
+    .doc1 h1 {
+        font-size: 50px;
+    }
+    .boxshadow {
+        width: 300px;
+        height: 300px;
+    }
+}
+@media (max-width: 450px) {
+    .Logo1 img {
+        width: 150px;
+    }
+    .doc1 h1 {
+        font-size: 28px;
+    }
+    .doc1 span {
+        font-size: 15px;
+    }
+    .boxshadow {
+        width: 250px;
+        height: 250px;
+    }
 }

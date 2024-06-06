@@ -5,48 +5,11 @@
     flex-direction: column;
     margin: 15vh 0;
 }
-/* .container{
-    padding: 130px;
-}
-.contact{
-    font-size: 30px;
-    padding-bottom: 30px;
-}
-.item__container {
-    max-width: 260px;
-    margin: 0 auto;
-}
-.name {
-    text-align: center;
-}
-table, td, th {  
-    border: 1px #ddd;
-    text-align: left;
-}
-  
-table {
-    width: 100%;
-}
-th {
-    height: 30px;
-    width: 650px;
-}
-.staff_name th{
-    color: wheat;
-    text-align: center;
-    font-size: 30px;
-
-}
-.staff_item{
-    color: white;
-
-}
-.staff_item img{
-    height: 200px;
-} */
 .Maintitle {
     font-size: 90px;
     padding-bottom: 50px;
+    padding-top: 50px;
+    text-align: center;
 }
 .section_Team {
     display: grid;
@@ -55,16 +18,36 @@ th {
 }
 .person {
     display: flex;
-    align-items: center;
+    align-items: left;
     flex-direction: column;
-    gap: 13px;
+    gap: 20px;
 }
 .person h1{
-    font-size: 40px;
+    font-size: 55px;
 }
 .person img {
-    width: 300px;
+    width: 200px;
 }
 .person p{
     font-size: 30px;
+
+}
+.contactimg img{
+    width: 30px;
+    cursor: pointer;
+}
+.contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+.contact img {
+    width: 30px;
+    height: 30px;
+    transition: .3s ease;
+}
+.contact img:hover {
+    width: 40px;
+    height: 40px;
 }

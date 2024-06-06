@@ -5,4 +5,5 @@ export const Instagram  = '../../../public/icon/instagram.png'
 export const Discord = '../../../public/icon/discord.png'
 export const imgform = '../../../public/imgform.jpg'
 export const default_profile = '../../../public/default_profile.png'
+export const icon_instagram = '../../../public/icon/icon_instagram.png'
 
