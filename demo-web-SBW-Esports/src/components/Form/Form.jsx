@@ -38,7 +38,7 @@ const Rule = ({ onNext }) => {
           📌ห้ามใช้โปรแกรมโกงหรือโปรแกรมช่วยเล่นทุกชนิด <br />
           <div className={styles.img}>
             <div className={styles.shadow}></div>
-            <img src="https://lh7-us.googleusercontent.com/WvjWYIxTa_9O5SmzFXBemotGaAxSnjoopyUnXz0gybY--DsnvGYYlcLBbVmDSr8pBZTzDj_Yh5NQufHlds-ZEF5oRhFrVLKLoOvg64fsjRK8j9Xp6T1One5VM_hjBLIheQS7zPb68ajuap_8rACPX640-UeP"></img>
+            <img src="https://scontent.fbkk7-2.fna.fbcdn.net/v/t39.30808-6/440102397_288556614307993_878123387578223784_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Eocyp_XNeNQQ7kNvgEi5of-&_nc_ht=scontent.fbkk7-2.fna&oh=00_AYASKc35C39ih8JW5m2-R1HJXob_j6oxAREDtcrkBNuzAg&oe=66689C87"></img>
           </div>
         </span>
       </div>

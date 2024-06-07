@@ -3,10 +3,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 15vh 0;
-
+    padding: 0 10%;
+    margin: 12vh 0;
 }
-
 .Maintitle {
     font-size: 90px;
     padding-bottom: 50px;
@@ -14,43 +13,35 @@
     text-align: center;
 
 }
-
 .section_Team {
     display: grid;
-    gap: 100px 200px;
+    gap: 5rem 12rem;
     grid-template-columns: repeat(3, 1fr);
 }
-
 .person {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    gap: 10px;
+    padding: 30px;
     border-radius: 20px;
     background-image: linear-gradient(to bottom, #340f6450, #4b3911);
     box-shadow: 0 0 10px 5px rgba(0,0,0,0.3);
 }
-
 .person h1 {
-    font-size: 55px;
+    font-size: 40px;
 }
-
 .person img {
-    width: 200px;
-    border-radius: 70px;
+    width: 180px;
+    border-radius: 50%;
 }
-
 .person p {
-    font-size: 30px;
-
+    font-size: 20px;
 }
-
 .contactimg img {
     width: 30px;
     cursor: pointer;
 }
-
 .contact {
     display: flex;
     align-items: center;
@@ -69,4 +60,23 @@
     width: 35px;
     height: 35px;
     opacity: 1;
+}
+@media (max-width: 1024px) {
+    .section_Team {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .contact img {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+    .contact img:hover {
+        width: 30px;
+        height: 30px;
+    }
+}
+@media (max-width: 480px) {
+    .section_Team {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

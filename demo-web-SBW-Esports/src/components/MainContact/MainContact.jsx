@@ -14,7 +14,7 @@ const MainContact = () => {
           <h1 className={styles.Maintitle}>HEAD STAFF</h1>
           <div className={styles.section_Team}>
             {contact.map((item, index) => (
-              index < 4 && (
+              index < 5 && (
                 <div className={styles.person} id={index}>
                   <h1>{item.title}</h1>
                   <img src={item.img}></img>
@@ -39,7 +39,7 @@ const MainContact = () => {
             <h1 className={styles.Maintitle}>STAFF</h1>
             <div className={styles.section_Team}>
               {contact.map((item, index) => (
-                index > 4 && (
+                index > 5 && (
                   <div className={styles.person} id={index}>
                     <h1>{item.title}</h1>
                     <img src={item.img}></img>

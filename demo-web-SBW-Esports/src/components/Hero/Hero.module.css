@@ -100,14 +100,12 @@
     }
     .SBW {
         height: 200px;
-        
     }
     .doc2 {
-        font-size: 18px;
+        font-size: 16px;
     }
-    
 }
-@media (max-width: 720px) {
+@media (max-width: 768px) {
     .Logo1 img {
         width: 150px;
     }
@@ -115,19 +113,16 @@
         font-size: 28px;
     }
     .doc1 span {
-        font-size: 20px;
+        font-size: 18px;
     }
     .boxshadow {
         width: 250px;
         height: 250px;
     }
-    .SBWep{
+    .SBWep{ 
         height: 100px;
     }
-    .SBW{
+    .SBW{   
         height: 150px;
-    }
-    .doc2{
-        font-size: 15px;
     }
 }
