@@ -3,21 +3,41 @@
         "title": "KRIT",
         "name": "TOH",
         "img": "https://scontent.fbkk24-1.fna.fbcdn.net/v/t39.30808-6/290755527_3100147620299502_3907244399161304762_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE93fVns8_FbcWVtRXif26CBg0DI-Yj1QkGDQMj5iPVCRC9hq_qPhOtdQAtvuV75o6NLQIxcAdWF-c9ESuYU-Y2&_nc_ohc=tfivLOrQPGkQ7kNvgF84GMZ&_nc_ht=scontent.fbkk24-1.fna&oh=00_AYAEza6jTHj9Xy_pvWGDd2trtA7p43Y1YiYwNDrq1J_aTw&oe=6667AFE9",
-        "role": "หัวหน้า",
+        "role": "Manager",
         "IG": "https://www.instagram.com/k.sxngp/",
         "FB": "https://www.facebook.com/profile.php?id=100009128831584"
     },
     {
-        "title": "(name)",
-        "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
-        "role": "(ตำแหน่ง)"
+        "title": "PISIT",
+        "name": "TON",
+        "img": "https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-1/294072715_1189304614976603_5292140928923869091_n.jpg?stp=dst-jpg_p200x200&_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeEkstk1cOv1vqWNhhypFhreeD2OvUfjdBR4PY69R-N0FNWabQb4bLBinS1VgPM3y9bm1jxT_oe1PIrfT_PPkikT&_nc_ohc=xs1CuebiOG4Q7kNvgGD5JRd&_nc_ht=scontent.fbkk26-1.fna&oh=00_AYAizXHemeGSPQiCVIQXmU9WGtMyn72vVGP-fL98NPU9Jw&oe=6669F4F6",
+        "role": "นักพากย์ , Team code",
+        "IG": "???",
+        "FB": "https://www.facebook.com/pisit.kummee"
     },
     {
-        "title": "(name)",
-        "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
-        "role": "(ตำแหน่ง)"
+        "title": "SURAKIET",
+        "name": "MAI",
+        "img": "https://scontent.fbkk26-1.fna.fbcdn.net/v/t1.6435-9/117157882_950453462101258_2473283121414717328_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHRDcYBFX11s1GUnz_XPqpjB4jmJAjhJQEHiOYkCOElAbOjppx-AnvoZtvtvb8YtgdQLkz5axUHWyb1ruF2py2V&_nc_ohc=MNms-hmndbwQ7kNvgFEM9xN&_nc_ht=scontent.fbkk26-1.fna&oh=00_AYBElbfKTF2S0htfav0RXxj87bfOYFg5aHWgL0pzJVMevg&oe=668B88D9",
+        "role": "นักพากย์ , Team code",
+        "IG": "https://www.instagram.com/flxring.f/",
+        "FB": "https://www.facebook.com/profile.php?id=100014098382719"
+    },
+    {
+        "title": "POOWIST",
+        "name": "POO",
+        "img": "https://scontent.xx.fbcdn.net/v/t1.15752-9/436685046_738191621574100_3020817925992935718_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFWGKZaUAumy3DESJxZ26uuiOGIq5yZXKKI4YirnJlcomYs5sVgaS-WNGTjze-mX95VBlfNwh352X3VpPgPFS81&_nc_ohc=hvIOFu1u7bkQ7kNvgFa5aCk&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QEwEWo8LN5dBSrNmS97sOjBeJbtlolaYh0TpUf8QSC4UQ&oe=668BB8E4",
+        "role": "Coordinator",
+        "IG": "https://www.instagram.com/pp0hzx/",
+        "FB": "https://www.facebook.com/poowist.tipmanee"
+    },
+    {
+        "title": "PONGSAPAK",
+        "name": "ING",
+        "img": "https://scontent.fbkk26-1.fna.fbcdn.net/v/t39.30808-1/411092701_1588233442005793_7077670181138542581_n.jpg?stp=dst-jpg_p200x200&_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeH4TQNV5rHCBATmK5IuWKWPN_Deh3yFNsI38N6HfIU2wr8J_hJD_FxkGhrET0UuttbM-ReXoCeeZRkEiPESyP_j&_nc_ohc=38sKLzpxLRkQ7kNvgHgxUwW&_nc_ht=scontent.fbkk26-1.fna&oh=00_AYCTLoHBmyW3pUS2AEPo_4v_TfZwgAcOetVA2TyWgcnF9g&oe=666A0A82",
+        "role": "Stream , Web Dev",
+        "IG": "https://www.instagram.com/pee___pong.nige/",
+        "FB": "https://www.facebook.com/profile.php?id=100024574573974"
     },
     {
         "title": "(name)",

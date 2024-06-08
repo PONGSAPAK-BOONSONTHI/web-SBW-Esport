@@ -62,7 +62,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path='/' element={
+          <Route path="/" element={
             <>
               <Hero />
               <Publicize />

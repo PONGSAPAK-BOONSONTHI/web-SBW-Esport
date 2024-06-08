@@ -1,23 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './Navbar.module.css';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { LogoSBWep, default_profile } from '../../utils/index.js';
-import { Link } from 'react-router-dom';
+import { LogoSBWep, default_profile, more, down_chevron, close } from '../../utils/index.js';
+import { NavLink } from 'react-router-dom';
 import { DataApp } from '../../App.jsx';
 
 const Nevbar = () => {
+  const sections = [
+    { to: '/', text: 'Home' },
+    { to: '/publicize', text: 'ประชาสัมพันธ์' },
+    { to: '/activity', text: 'กิจกรรม' },
+    { to: '/origin', text: 'ความเป็นมา' },
+    { to: '/contact', text: 'Contact' }
+  ];
+
   const { profile, onSuccess, onFailed, logOut, clientId } = useContext(DataApp)
   const [imageSrcProfile, setImageSrcProfile] = useState(profile?.imageUrl || default_profile)
 
-  const sections = [
-    { to: '/', text: 'Home', style: 'button1' },
-    { to: '/publicize', text: 'ประชาสัมพันธ์', style: 'button2' },
-    { to: '/activity', text: 'กิจกรรม', style: 'button1' },
-    { to: '/origin', text: 'ความเป็นมา', style: 'button2' },
-    { to: '/contact', text: 'Contact', style: 'button1' }
-  ];
+  const [openProflie, setOpenProflie] = useState(false)
+  const [openMenu_more, setOpenMenu_more] = useState(false)
 
-  const [open, setOpen] = useState(false)
   const handleMenuClick = () => {
     window.scrollTo(0, 0)
   };
@@ -35,28 +37,68 @@ const Nevbar = () => {
   return (
     <header>
       <nav className={styles.Navbar}>
-        <Link to='/' className={styles.Logo}>
+        <NavLink to='/' className={styles.Logo}>
           <img src={LogoSBWep} width={90} alt="Logo" onClick={handleMenuClick} />
-        </Link>
+        </NavLink>
+
+        <div onClick={() => setOpenMenu_more(!openMenu_more)} className={styles.Menu_more}>
+          {!openMenu_more ? (
+            <img src={more} alt="more" />
+          ) : (
+            <img src={close} alt="close" />
+          )}
+        </div>
+
+        {openMenu_more && (
+          <ul className={styles.dropdown_Menu_more}>
+            {sections.map((item, index) => (
+              index % 2 === 0 ? (
+                <li>
+                  <NavLink key={index} className={({ isActive }) => `${styles.button1} ${isActive ? styles.active1 : ''}`} to={item.to} onClick={handleMenuClick}>
+                    {item.text}
+                  </NavLink>
+                </li>
+              ) : (
+                <li>
+                  <NavLink key={index} className={({ isActive }) => `${styles.button2} ${isActive ? styles.active2 : ''}`} to={item.to} onClick={handleMenuClick}>
+                    {item.text}
+                  </NavLink>
+                </li>
+              )
+
+            ))}
+          </ul>
+        )}
+
         <div className={styles.Menu}>
-          {sections.map((section, index) => (
-            <Link key={index} to={section.to} className={styles[section.style]} onClick={handleMenuClick}>
-              {section.text}
-            </Link>
+          {sections.map((item, index) => (
+            index % 2 === 0 ? (
+              <NavLink key={index} className={({ isActive }) => `${styles.button1} ${isActive ? styles.active1 : ''}`} to={item.to} onClick={handleMenuClick}>
+                {item.text}
+              </NavLink>
+            ) : (
+              <NavLink key={index} className={({ isActive }) => `${styles.button2} ${isActive ? styles.active2 : ''}`} to={item.to} onClick={handleMenuClick}>
+                {item.text}
+              </NavLink>
+            )
           ))}
         </div>
+
         <div className={styles.Login}>
           {profile ? (
-            <div onClick={() => setOpen(!open)} className={styles.profile}>
+            <div onClick={() => setOpenProflie(!openProflie)} className={styles.profile}>
               <div className={styles.imgProfile}>
-                <img src={imageSrcProfile} onError={handleImageError}/>
+                <img src={imageSrcProfile} onError={handleImageError} />
               </div>
               <div>Profile</div>
-              {open && (
-                <ul className={styles.dropdown}>
-                  <Link to="/status">
-                    <li><button type='button'>ดูสถานะ</button></li>
-                  </Link>
+              <img className={styles.down_chevron} src={down_chevron} alt="down_chevron" />
+              {openProflie && (
+                <ul className={styles.dropdown_down_chevron}>
+                  <li>
+                    <NavLink to="/status">
+                      <button type='button'>ดูสถานะ</button>
+                    </NavLink>
+                  </li>
                   <li>
                     <GoogleLogout
                       clientId={clientId}
@@ -79,7 +121,7 @@ const Nevbar = () => {
           )}
         </div>
       </nav>
-    </header>
+    </header >
   );
 };
 

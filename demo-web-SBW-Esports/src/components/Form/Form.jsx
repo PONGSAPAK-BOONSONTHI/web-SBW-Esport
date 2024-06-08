@@ -13,6 +13,8 @@ const Rule = ({ onNext }) => {
           <br />
           <h3>วันรับสมัคร</h3>
           30 เมษายน 2567 เวลา 18.30 น. ถึงวันที่ 3 พฤษภาคม 2567
+          <br />
+          <br />
           <h3>กติกาการสมัคร</h3>
           📌 สมาชิกทีมต้องมาจากโรงเรียนเดียวกันเท่านั้น (อนุญาตให้ผู้เข้าแข่งขันที่อยู่ในการศึกษาช่วงมัธยมศึกษาปีที่ 1 - 6) <br />
           📌 สมาชิกในทีม -สามารถคละระดับชั้นได้ -ไม่จำกัดเพศในทีม <br />
@@ -50,11 +52,8 @@ const Rule = ({ onNext }) => {
   )
 }
 
-const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData }) => {
+const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, prefix, setPrefix, date, setDate }) => {
   const formRef = useRef(null)
-
-  const [prefix, setPrefix] = useState('')
-  const [date, setDate] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -104,7 +103,10 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData }) =>
         {applicantNumber < 6 ? (
           <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber}</h1>
         ) : (
-          <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber} (ตัวสำรอง)</h1>
+          <div>
+            <h1 className={styles.title}>ผู้ลงสมัครคนที่ {applicantNumber} (ตัวสำรอง)</h1>
+            <p className={styles.title_exhort}>ถ้าไม่มีให้ใส่ - และ ให้เลือกวันเกิดเป็นวันที่ลงสมัคร</p>
+          </div>
         )}
         <div className={styles.form_Sention}>
           <div className={styles.select}>
@@ -132,28 +134,35 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData }) =>
           </div>
         </div>
 
-        <div className={styles.form_Sention}>
-          <div className={styles.input}>
-            <label for="date">วันเกิด</label>
-            <input type="date" id="date" name="date"
-              defaultValue={date === '' || formData.date}
-              onChange={(e) => setDate(e.target.value)} required
-            />
+        <div className={styles.form_Sention_2item}>
+
+          <div className={styles.form_Sention}>
+            <div className={styles.input}>
+              <label for="date">วันเกิด</label>
+              <input type="date" id="date" name="date"
+                defaultValue={date === '' || formData.date}
+                onChange={(e) => setDate(e.target.value)} required
+              />
+            </div>
+
+            <div className={styles.input}>
+              <label htmlFor='phone'>เบอร์</label>
+              <input type="text" id='phone' name="phone" defaultValue={formData.phone || ''} required />
+            </div>
           </div>
 
-          <div className={styles.input}>
-            <label htmlFor='phone'>เบอร์</label>
-            <input type="text" id='phone' name="phone" defaultValue={formData.phone || ''} required />
-          </div>
-          <div className={styles.input}>
-            <label htmlFor='room'>ชั้นเเละห้อง</label>
-            <input type="text" id='roon' name="room" defaultValue={formData.room || ''} required />
+          <div className={styles.form_Sention}>
+            <div className={styles.input}>
+              <label htmlFor='room'>ชั้นเเละห้อง</label>
+              <input type="text" id='roon' name="room" defaultValue={formData.room || ''} required />
+            </div>
+
+            <div className={styles.input}>
+              <label htmlFor='number_capter'>เลขที่เเละตอน</label>
+              <input type="text" id='number_capter' name="number_capter" defaultValue={formData.number_capter || ''} required />
+            </div>
           </div>
 
-          <div className={styles.input}>
-            <label htmlFor='number_capter'>เลขที่เเละตอน</label>
-            <input type="text" id='number_capter' name="number_capter" defaultValue={formData.number_capter || ''} required />
-          </div>
         </div>
 
         <div className={styles.form_Sention}>
@@ -209,6 +218,12 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData }) =>
 }
 
 const AggregateData = ({ applicants, onBack, handleSubmitAll, loading }) => {
+
+  const formatDate = (dateString) => {
+    const [year, month, day] = dateString.split('-');
+    return `${month}/${day}/${year}`;
+  };
+
   return (
     <div className={styles.section}>
       <div className={styles.aggregate_Data}>
@@ -217,13 +232,13 @@ const AggregateData = ({ applicants, onBack, handleSubmitAll, loading }) => {
         <div className={styles.section_Data}>
           {applicants.map((item, index) => (
             <div className={styles.Data}>
-              {index < 6 ? (
+              {index < 5 ? (
                 <h1 className={styles.title_Data}>ผู้ลงสมัครคนที่ {index + 1}</h1>
               ) : (
                 <h1 className={styles.title_Data}>ผู้ลงสมัครคนที่ {index + 1} (ตัวสำรอง)</h1>
               )}
               <h1 className={styles.name_Data}>{item.prefix} {item.name} {item.surname} {item.room} {item.number_capter}</h1>
-              <p>เกิดวันที่ : {item.date} เบอร์ : {item.phone}</p>
+              <p>เกิดวันที่ : {formatDate(item.date)} เบอร์ : {item.phone}</p>
               <p>ชื่อในเกม : {item.name_game} OpenID : {item.openID}</p>
               <p>ตำแหน่งในเกม : {item.position}</p>
             </div>
@@ -248,6 +263,9 @@ const Form = () => {
   const [applicantNumber, setApplicantNumber] = useState(0)
   const [loading, setLoading] = useState(false)
 
+  const [prefix, setPrefix] = useState('')
+  const [date, setDate] = useState('');
+
   const NextStep = () => {
     if (applicantNumber < 7) {
       setStep(step + 1)
@@ -255,13 +273,13 @@ const Form = () => {
     } else {
       handleSubmitAll()
     }
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   };
 
   const BackStep = () => {
     setApplicantNumber(applicantNumber - 1)
     setStep(step - 1)
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
   };
 
   const onSave = (applicantNumber, data) => {
@@ -328,6 +346,10 @@ const Form = () => {
               onBack={BackStep}
               onSave={onSave}
               formData={applicants[applicantNumber - 1] || {}}
+              prefix={prefix}
+              setPrefix={setPrefix}
+              date={date}
+              setDate={setDate}
             />
           )}
           {step === 8 &&
