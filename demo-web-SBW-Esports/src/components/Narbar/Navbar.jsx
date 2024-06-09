@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './Navbar.module.css';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { LogoSBWep, default_profile, more, down_chevron, close } from '../../utils/index.js';
@@ -19,6 +19,10 @@ const Nevbar = () => {
 
   const [openProflie, setOpenProflie] = useState(false)
   const [openMenu_more, setOpenMenu_more] = useState(false)
+  const closeMenu = () => {
+    setOpenProflie(false)
+    setOpenMenu_more(false)
+  };
 
   const handleMenuClick = () => {
     window.scrollTo(0, 0)
@@ -40,35 +44,41 @@ const Nevbar = () => {
         <NavLink to='/' className={styles.Logo}>
           <img src={LogoSBWep} width={90} alt="Logo" onClick={handleMenuClick} />
         </NavLink>
-
+      
         <div onClick={() => setOpenMenu_more(!openMenu_more)} className={styles.Menu_more}>
           {!openMenu_more ? (
             <img src={more} alt="more" />
           ) : (
             <img src={close} alt="close" />
           )}
+          {openMenu_more && (
+            <ul className={styles.dropdown_Menu_more}>
+              {sections.map((item, index) => (
+                index % 2 === 0 ? (
+                  <li key={index}>
+                    <NavLink className={({ isActive }) => `${styles.button} ${isActive ? styles.active1 : ''}`} to={item.to}
+                      onClick={() => {
+                        handleMenuClick()
+                        closeMenu()
+                      }}>
+                      {item.text}
+                    </NavLink>
+                  </li>
+                ) : (
+                  <li key={index}>
+                    <NavLink key={index} className={({ isActive }) => `${styles.button} ${isActive ? styles.active2 : ''}`} to={item.to}
+                      onClick={() => {
+                        handleMenuClick()
+                        closeMenu()
+                      }}>
+                      {item.text}
+                    </NavLink>
+                  </li>
+                )
+              ))}
+            </ul>
+          )}
         </div>
-
-        {openMenu_more && (
-          <ul className={styles.dropdown_Menu_more}>
-            {sections.map((item, index) => (
-              index % 2 === 0 ? (
-                <li>
-                  <NavLink key={index} className={({ isActive }) => `${styles.button1} ${isActive ? styles.active1 : ''}`} to={item.to} onClick={handleMenuClick}>
-                    {item.text}
-                  </NavLink>
-                </li>
-              ) : (
-                <li>
-                  <NavLink key={index} className={({ isActive }) => `${styles.button2} ${isActive ? styles.active2 : ''}`} to={item.to} onClick={handleMenuClick}>
-                    {item.text}
-                  </NavLink>
-                </li>
-              )
-
-            ))}
-          </ul>
-        )}
 
         <div className={styles.Menu}>
           {sections.map((item, index) => (
@@ -95,7 +105,7 @@ const Nevbar = () => {
               {openProflie && (
                 <ul className={styles.dropdown_down_chevron}>
                   <li>
-                    <NavLink to="/status">
+                    <NavLink to="/status" onClick={() => closeMenu()}>
                       <button type='button'>ดูสถานะ</button>
                     </NavLink>
                   </li>

@@ -78,6 +78,9 @@
     .section_Team {
         gap: 3rem 6rem;
     }
+    .Maintitle {
+        font-size: 80px;
+    }
 }
 @media (max-width: 768px) {
     .section_Team {
@@ -87,5 +90,10 @@
     }
     .person {
         width: 300px;
+    }
+}
+@media (max-width: 480px) {
+    .Maintitle {
+        font-size: 50px;
     }
 }

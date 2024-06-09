@@ -68,6 +68,7 @@ function App() {
               <Publicize />
               <Activity />
               <Origin />
+              <MainContact />
               <Contact />
             </>
           } />

@@ -4,7 +4,6 @@ import contact from '../../utils/contact.json'
 import { icon_instagram, Facebook } from '../../utils'
 
 const MainContact = () => {
-  console.log(contact);
 
   return (
     <section id={styles.MainContact}>
