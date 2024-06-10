@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Publicized.module.css'
-import { news, news2, news3, news4 } from '../../utils'
+import publicize from '../../utils/publicize.json'
 
 const Publicize = () => {
   return (
@@ -8,39 +8,27 @@ const Publicize = () => {
       <div className={styles.Publicized}>
         <h1 className={styles.title}>ประชาสัมพันธ์</h1>
         <div className={styles.head}>
+          {publicize.map((item, index) => (
+            <div className={styles.news}>
+              
+              <div className={styles.new_img}>
+                <a href={item.link} target='_blank'>
+                  <img src={item.img} alt='' />
+                </a>
+              </div>
 
-          <div className={styles.news}>
-            <a href='https://www.facebook.com/photo?fbid=297707780059543&set=a.107154159114907' target="_blank">
-              <img src={news} alt='' />
-            </a>
-            <div className={styles.doc}>
-              <h1>Event name</h1>
-              <p>qweqweqweqweqweqeqweq</p>
+              <div className={styles.doc}>
+                <h1>{item.title}</h1>
+                <p className={styles.doc_p}>{item.p}</p>
+                <div className={styles.mini_doc}>
+                  {item.mini_doc.split('\n').map((doc, index) => (
+                    <p>{doc}</p>
+                  ))}
+                </div>
+              </div>
 
             </div>
-
-          </div>
-
-          <div className={styles.news}>
-            <a href='https://www.facebook.com/photo?fbid=288556617641326&set=a.107154159114907' target="_blank">
-              <img src={news2} alt='' />
-            </a>
-            <p>Event name</p>
-          </div>
-
-          <div className={styles.news}>
-            <a href='https://www.facebook.com/photo/?fbid=187811377715851&set=pcb.187812891049033' target='_blank'>
-              <img src={news4} alt='' />
-            </a>
-            <p>Event name</p>
-          </div>
-
-          <div className={styles.news}>
-            <a href='https://www.facebook.com/photo/?fbid=187811377715851&set=pcb.187812891049033' target='_blank'>
-              <img src="https://www.ais.th/game/studio/asset/images/img_zone01.jpg" alt='' />
-            </a>
-            <p>Event name</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -3,8 +3,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-top: 10%;
-    padding: 0 10%;
+    margin: 12vb 0;
 }
 .title {
     font-size: 90px;
@@ -13,54 +12,101 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100%;
-    font-size: 50px;
-    padding: 5% 10%;
+    height: 100%;
+    gap: 20px;
+    padding: 0 5%;
+    padding-bottom: 5%;
 }
 .news {
     display: flex;
-    margin: 1rem;
-
-    width: 100%;
-    height: 100%;
-
-    background-color: #1d0937;
+    min-height: 195px;
+    padding: 30px;
     border-radius: 20px;
+    background-color: #1d0937;
+    gap: 30px;  
 }
-.news img {
-    width: 500px;
-    height: 100%;
-    /* padding: 50px; */
+.new_img {
+    display: flex;
+    align-items: center;
+    min-width: 400px;
+    min-height: 195px;
 }
 .doc {
     align-items: center;
 }
-.doc h1 {
-    text-align: center;
-    font-size: 30px;
+.new_img a img{
+    width: 400px;
+    height: 100%;
 }
-.doc p{
-    text-align: center;
-    font-size: 20px;
+.doc h1 {
+    font-size: 35px;
+}
+.doc .doc_p {
+    font-size: 22px;
+}
+.mini_doc p{
+    font-size: 18px;
+    color: #bdc3c7;
+}
+@media (max-width: 1280px) {
+    .news {
+        padding: 25px;
+        gap: 25px;  
+    }
+    .doc h1 {
+        font-size: 25px;
+    }
+    .doc .doc_p {
+        font-size: 16px;
+        padding-bottom: 10px;
+    }
+    .mini_doc p{
+        font-size: 14px;
+        color: #bdc3c7;
+    }
 }
 @media (max-width: 1024px) {
-    .title {
-        font-size: 70px;
+    .doc h1 {
+        font-size: 25px;
+        padding-bottom: 20px;
     }
-    .Publicized {
-        padding: 0px;
+    .mini_doc p{
+        display: none;
     }
 }
 @media (max-width:768px) {
     .title {
-        font-size: 50px;
+        font-size: 70px;
     }
     .news {
         display: flex;
         flex-direction: column;
     }
-    .news img {
+    .new_img {
+        width: 100%;
+    }
+    .new_img a img{
         width: 100%;
         height: 100%;
+    }
+}
+@media (max-width:480px) {
+    .title {
+        font-size: 40px;
+    }
+    .head {
+        padding: 1% 5%;
+    }
+    .doc h1 {
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
+    .doc p {
+        font-size: 12px;
+        padding-bottom: 10px;
+    }
+    .new_img {
+        min-width: 250px;
+        min-height: 195px;
     }
 }
