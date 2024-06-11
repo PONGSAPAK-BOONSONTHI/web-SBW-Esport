@@ -57,8 +57,8 @@
         font-size: 25px;
     }
     .doc .doc_p {
-        font-size: 16px;
-        padding-bottom: 10px;
+        font-size: 14px;
+        padding-bottom: 5px;
     }
     .mini_doc p{
         font-size: 14px;
@@ -67,8 +67,12 @@
 }
 @media (max-width: 1024px) {
     .doc h1 {
-        font-size: 25px;
-        padding-bottom: 20px;
+        font-size: 28px;
+        padding-bottom: 10px;
+    }
+    .doc .doc_p {
+        font-size: 18px;
+        padding-bottom: 5px;
     }
     .mini_doc p{
         display: none;
@@ -92,18 +96,18 @@
 }
 @media (max-width:480px) {
     .title {
-        font-size: 40px;
+        font-size: 45px;
+        padding-bottom: 10px;
     }
     .head {
         padding: 1% 5%;
     }
     .doc h1 {
-        font-size: 20px;
-        padding-bottom: 20px;
+        font-size: 25px;
     }
-    .doc p {
-        font-size: 12px;
-        padding-bottom: 10px;
+    .doc .doc_p {
+        font-size: 14px;
+        padding-bottom: 5px;
     }
     .new_img {
         min-width: 250px;

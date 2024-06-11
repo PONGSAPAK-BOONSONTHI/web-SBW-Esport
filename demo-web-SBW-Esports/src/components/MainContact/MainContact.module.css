@@ -7,7 +7,7 @@
 }
 .Maintitle {
     font-size: 90px;
-    padding: 50px 0;
+    padding:  0 0 50px 0;
     text-align: center;
 }
 .section_Team {
@@ -94,6 +94,7 @@
 }
 @media (max-width: 480px) {
     .Maintitle {
-        font-size: 50px;
+        font-size: 45px;
+        padding-bottom: 10px;
     }
 }
