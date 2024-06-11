@@ -11,7 +11,7 @@ const Hero = () => {
           <div className={styles.boxshadow}></div>
         </div>
         <div className={styles.doc1}>
-          <h1>SBW E-sports 🎮</h1>
+          <h1>SBW E-sport</h1>
           <span>💛ถิ่นเหลืองฟ้าสง่างาม💙</span>
         </div>
       </div>

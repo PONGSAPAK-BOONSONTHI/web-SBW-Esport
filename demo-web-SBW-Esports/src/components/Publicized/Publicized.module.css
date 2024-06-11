@@ -12,36 +12,59 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    width: 88%;
     height: 100%;
     gap: 20px;
     padding: 0 5%;
     padding-bottom: 5%;
 }
-.news {
+.news, .news_F {
     display: flex;
+    width: 100%;
     min-height: 195px;
     padding: 30px;
     border-radius: 20px;
     background-color: #1d0937;
     gap: 30px;  
 }
+.news_F {
+    background-color: #1d09377d;
+}
 .new_img {
+    position: relative;
     display: flex;
     align-items: center;
     min-width: 400px;
     min-height: 195px;
 }
-.doc {
+.situation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000c4;
+    cursor: pointer;
+}
+.situation h1 {
+    font-size: 60PX;
+    color: red;
+}
+.doc, .doc_F {
     align-items: center;
 }
-.new_img a img{
+.doc_F {
+    opacity: 0.5;
+}
+.new_img a img, .doc_F a img{
     width: 400px;
     height: 100%;
 }
-.doc h1 {
+.doc h1, .doc_F h1{
     font-size: 35px;
 }
-.doc .doc_p {
+.doc .doc_p , .doc_F .doc_p {
     font-size: 22px;
 }
 .mini_doc p{
@@ -49,14 +72,17 @@
     color: #bdc3c7;
 }
 @media (max-width: 1280px) {
-    .news {
+    .head {
+        width: 100%;
+    }
+    .news, .news_F {
         padding: 25px;
         gap: 25px;  
     }
-    .doc h1 {
+    .doc h1, .doc_F h1 {
         font-size: 25px;
     }
-    .doc .doc_p {
+    .doc .doc_p , .doc_F .doc_p {
         font-size: 14px;
         padding-bottom: 5px;
     }
@@ -66,11 +92,11 @@
     }
 }
 @media (max-width: 1024px) {
-    .doc h1 {
+    .doc h1, .doc_F h1 {
         font-size: 28px;
         padding-bottom: 10px;
     }
-    .doc .doc_p {
+    .doc .doc_p , .doc_F .doc_p {
         font-size: 18px;
         padding-bottom: 5px;
     }
@@ -82,7 +108,7 @@
     .title {
         font-size: 70px;
     }
-    .news {
+    .news, .news_F {
         display: flex;
         flex-direction: column;
     }
@@ -102,10 +128,10 @@
     .head {
         padding: 1% 5%;
     }
-    .doc h1 {
+    .doc .doc_p , .doc_F .doc_p {
         font-size: 25px;
     }
-    .doc .doc_p {
+    .doc .doc_p , .doc_F .doc_p{
         font-size: 14px;
         padding-bottom: 5px;
     }
