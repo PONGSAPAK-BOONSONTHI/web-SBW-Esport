@@ -78,7 +78,7 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, pref
     const position = formData.get('position')
 
     if (!prefix || !name || !surname || !phone || !date || !room || !number_capter || !name_game || !openID || !position) {
-      alert("กรุณากรอกข้อมูลให้ครบถ้วน!");
+      alert("กรุณากรอกข้อมูลให้ครบถ้วน!")
       console.log("กรุณากรอกข้อมูลให้ครบถ้วน")
       return;
     }
@@ -93,14 +93,12 @@ const ApplicantForm = ({ applicantNumber, onNext, onBack, onSave, formData, pref
 
     const data = { ...Object.fromEntries(formData.entries()), prefix, date }
     onSave(applicantNumber, data)
-    console.log(data)
     if (applicantNumber < 6) {
       onNext();
       formRef.current.reset()
     } else {
       onNext();
     }
-    console.log("applicantNumber", applicantNumber);
   }
 
   return (
@@ -292,7 +290,6 @@ const Form = () => {
     const newApplicants = [...applicants]
     newApplicants[applicantNumber - 1] = data
     setApplicants(newApplicants)
-    console.log("Sum data form", newApplicants)
   }
 
   const handleSubmitAll = async () => {

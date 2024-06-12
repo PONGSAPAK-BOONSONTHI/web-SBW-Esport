@@ -35,7 +35,6 @@ function App() {
   const onSuccess = (res) => {
     const profile = res.profileObj
     setProfile(profile)
-    console.log('Success', res)
     const Email = profile.email
     setEmail(Email)
   };
@@ -46,6 +45,7 @@ function App() {
 
   const logOut = () => {
     setProfile(null);
+    location.reload()
   };
 
   const value = {

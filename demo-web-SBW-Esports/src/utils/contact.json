@@ -42,43 +42,43 @@
     {
         "title": "(name)",
         "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
+        "img": "/default_profile.png",
         "role": "(ตำแหน่ง)"
     },
     {
         "title": "(name)",
         "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
+        "img": "/default_profile.png",
         "role": "(ตำแหน่ง)"
     },
     {
         "title": "(name)",
         "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
+        "img": "/default_profile.png",
         "role": "(ตำแหน่ง)"
     },
     {
         "title": "(name)",
         "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
+        "img": "/default_profile.png",
         "role": "(ตำแหน่ง)"
     },
     {
         "title": "(name)",
         "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
+        "img": "/default_profile.png",
         "role": "(ตำแหน่ง)"
     },
     {
         "title": "(name)",
         "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
+        "img": "/default_profile.png",
         "role": "(ตำแหน่ง)"
     },
     {
         "title": "(name)",
         "name": "(nickname)",
-        "img": "../../../public/default_profile.png",
+        "img": "/default_profile.png",
         "role": "(ตำแหน่ง)"
     }
 ]

@@ -14,7 +14,7 @@ const Nevbar = () => {
     { to: '/contact', text: 'Contact' }
   ];
 
-  const { profile, onSuccess, onFailed, logOut, clientId } = useContext(DataApp)
+  const { profile, onSuccess, onFailed, logOut, clientId, email } = useContext(DataApp)
   const [imageSrcProfile, setImageSrcProfile] = useState(profile?.imageUrl || default_profile)
 
   const [openProflie, setOpenProflie] = useState(false)
@@ -35,8 +35,8 @@ const Nevbar = () => {
   }, [profile])
 
   const handleImageError = () => {
-    setImageSrcProfile(default_profile);
-  };
+      setImageSrcProfile(default_profile);
+  }
 
   return (
     <header>
@@ -110,7 +110,7 @@ const Nevbar = () => {
                     </NavLink>
                   </li>
                   <li>
-                    <GoogleLogout
+                    <GoogleLogout 
                       clientId={clientId}
                       buttonText='Log out'
                       onLogoutSuccess={logOut}

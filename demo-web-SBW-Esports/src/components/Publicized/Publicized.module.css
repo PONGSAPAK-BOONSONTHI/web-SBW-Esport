@@ -8,6 +8,10 @@
 .title {
     font-size: 90px;
 }
+.section_caution {
+    display: flex;
+    background-color: #1d0937;
+}
 .head {
     display: flex;
     align-items: center;
@@ -18,6 +22,15 @@
     padding: 0 5%;
     padding-bottom: 5%;
 }
+/* .section_aution {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 400px;
+    height: 100%;
+    padding: 0 5%;
+    background-color: #1d0937;
+} */
 .news, .news_F {
     display: flex;
     width: 100%;

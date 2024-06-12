@@ -1,22 +1,39 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './Publicized.module.css'
 import publicize from '../../utils/publicize.json'
 import { NavLink } from 'react-router-dom'
+import { DataApp } from '../../App'
 
 const Publicize = () => {
+  const { email } = useContext(DataApp)
+
+  const handleClick = (e) => {
+    if (!email) {
+      e.preventDefault()
+      alert("กรุณาล็อกอินก่อนสมัคร!")
+    } 
+  }
+
   return (
     <section id={styles.Publicized}>
       <div className={styles.Publicized}>
         <h1 className={styles.title}>ประชาสัมพันธ์</h1>
         <div className={styles.head}>
+
           {publicize.map((item, index) => (
             item.situation === "T" ? (
               <div className={styles.news}>
 
                 <div className={styles.new_img}>
-                  <NavLink to="/status" target='_blank'>
-                    <img src={item.img} alt='' />
-                  </NavLink>
+                  {!email ? (
+                    <NavLink onClick={handleClick}>
+                      <img src={item.img} alt='' />
+                    </NavLink>
+                  ) : (
+                    <NavLink to="/status">
+                      <img src={item.img} alt='' />
+                    </NavLink>
+                  )}
                 </div>
 
                 <div className={styles.doc}>
