@@ -29,24 +29,33 @@ function App() {
         scope: ''
       });
     };
-    gapi.load("client:auth2", initClient);
-  }, [clientId]);
+    gapi.load("client:auth2", initClient)
+
+    const loggedIn = JSON.parse(localStorage.getItem('profile'));
+    if (loggedIn) {
+      setProfile(loggedIn)
+      setEmail(loggedIn.email)
+    }
+  }, [clientId])
 
   const onSuccess = (res) => {
     const profile = res.profileObj
     setProfile(profile)
     const Email = profile.email
     setEmail(Email)
-  };
+    localStorage.setItem('profile', JSON.stringify(profile))
+    window.location.reload();
+  }
 
   const onFailed = (res) => {
-    console.log('Failed', res);
-  };
+    console.log('Failed', res)
+  }
 
   const logOut = () => {
-    setProfile(null);
-    location.reload()
-  };
+    setProfile(null)
+    localStorage.removeItem('profile');
+    window.location.reload()
+  }
 
   const value = {
     profile,
@@ -55,7 +64,7 @@ function App() {
     onSuccess,
     onFailed,
     logOut
-  };
+  }
 
   return (
     <DataApp.Provider value={value}>

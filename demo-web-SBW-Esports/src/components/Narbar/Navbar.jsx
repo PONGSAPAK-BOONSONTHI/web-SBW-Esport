@@ -12,9 +12,9 @@ const Nevbar = () => {
     { to: '/activity', text: 'กิจกรรม' },
     { to: '/origin', text: 'ความเป็นมา' },
     { to: '/contact', text: 'Contact' }
-  ];
+  ]
 
-  const { profile, onSuccess, onFailed, logOut, clientId, email } = useContext(DataApp)
+  const { profile, onSuccess, onFailed, logOut, clientId,  } = useContext(DataApp)
   const [imageSrcProfile, setImageSrcProfile] = useState(profile?.imageUrl || default_profile)
 
   const [openProflie, setOpenProflie] = useState(false)
@@ -22,11 +22,11 @@ const Nevbar = () => {
   const closeMenu = () => {
     setOpenProflie(false)
     setOpenMenu_more(false)
-  };
+  }
 
   const handleMenuClick = () => {
     window.scrollTo(0, 0)
-  };
+  }
 
   useEffect(() => {
     if (profile?.imageUrl) {
