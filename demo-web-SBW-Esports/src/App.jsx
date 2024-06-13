@@ -11,8 +11,6 @@ import Origin from './components/Origin/Origin.jsx'
 import MainContact from './components/MainContact/MainContact.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import Form from './components/Form/Form.jsx'
-import Status from './components/Status/Status.jsx'
-import Formtest from './components/Form/Formtest.jsx'
 
 export const DataApp = createContext();
 
@@ -44,7 +42,7 @@ function App() {
     const Email = profile.email
     setEmail(Email)
     localStorage.setItem('profile', JSON.stringify(profile))
-    window.location.reload();
+    location.reload();
   }
 
   const onFailed = (res) => {
@@ -54,7 +52,7 @@ function App() {
   const logOut = () => {
     setProfile(null)
     localStorage.removeItem('profile');
-    window.location.reload()
+    location.reload()
   }
 
   const value = {
@@ -108,8 +106,6 @@ function App() {
           <Route path='/status' element={
             <>
               <Form />
-              {/* <Formtest />? */}
-              {/* <Status /> */}
             </>
           }></Route>
         </Routes>
