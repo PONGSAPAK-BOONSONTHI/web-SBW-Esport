@@ -26,7 +26,7 @@
     position: absolute;
     background-size: cover;
     background-position: center;
-    background-image: url(../../../public/imgform.jpg);
+    background-image: url(/from/imgform.jpg);
     z-index: 1;
 }
 .head_title .title, .head_title .title_shadow{
