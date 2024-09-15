@@ -30,7 +30,7 @@ const Publicize = () => {
                       <img src={item.img} alt='' />
                     </NavLink>
                   ) : (
-                    <NavLink to="/status">
+                    <NavLink to={item.link}>
                       <img src={item.img} alt='' />
                     </NavLink>
                   )}
