@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import styles from './Navbar.module.css';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { LogoSBWep, default_profile, more, down_chevron, close } from '../../utils/index.js';
+import { LogoSBWep, default_profile, more, down_chevron, close, Google } from '../../utils/index.js';
 import { NavLink } from 'react-router-dom';
 import { DataApp } from '../../App.jsx';
 
@@ -114,6 +114,12 @@ const Nevbar = () => {
                       clientId={clientId}
                       buttonText='Log out'
                       onLogoutSuccess={logOut}
+                      render={renderProps => (
+                        <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.customButtonStyle}>
+                          <img width='22px' src={Google} alt="" />
+                          Log Out
+                        </button>
+                      )}
                     />
                   </li>
                 </ul>
@@ -127,6 +133,12 @@ const Nevbar = () => {
               onFailure={onFailed}
               cookiePolicy={'single_host_origin'}
               isSignedIn={true}
+              render={renderProps => (
+                <button onClick={renderProps.onClick} disabled={renderProps.disabled} className={styles.customButtonStyle}>
+                  <img width='22px' src={Google} alt="" />
+                  Log in
+                </button>
+              )}
             />
           )}
         </div>
@@ -134,5 +146,4 @@ const Nevbar = () => {
     </header >
   );
 };
-
 export default Nevbar;

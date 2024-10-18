@@ -153,15 +153,21 @@
     top: 120%;
     right: 10%;
 }
-.dropdown_down_chevron li button {
+.dropdown_down_chevron li button, .customButtonStyle {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: "Kanit", sans-serif;
+    font-size: 16px;
     border: none;
     border-radius: 2px;
     width: 140px;
+    gap: 10px;
     padding: 10px;
+    background-color: #fff;
 }
-.dropdown_down_chevron li button:hover {
+.dropdown_down_chevron li button:hover, .customButtonStyle:hover {
     background-color: #d3d3d3;
 }
 .dropdown_Menu {
